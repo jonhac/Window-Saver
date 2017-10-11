@@ -1,0 +1,36 @@
+#create {
+	display: flex;
+}
+#create:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+#name_input {
+	background-color: inherit;
+	border-style: none;
+	flex: 1;
+}
+
+input {
+	background-color: inherit;
+	border-style: none;
+}
+input:hover {
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.session {
+	width: 100%;
+	display: flex;
+}
+.session:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.restore_button{
+	flex: 1;
+}
+.delete_button:hover {
+	background-color: red;
+}
+.override_button:hover {
+	background-color: orange;
+}

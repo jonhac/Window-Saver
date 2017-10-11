@@ -1,0 +1,27 @@
+{
+	"manifest_version": 2,
+	"name": "Session Bookmarks",
+	"version": "1.0",
+
+	"description": "No Description",
+
+	"icons": {
+		"32": "icons/icon.svg",
+		"48": "icons/icon.svg",
+		"64": "icons/icon.svg",
+		"96": "icons/icon.svg",
+		"128": "icons/icon.svg"
+	},
+
+	"permissions": [
+		"bookmarks",
+		"tabs"
+	],
+
+	"browser_action": {
+		"default_icon": "icons/icon.svg",
+		"default_title": "Session Bookmarks",
+		"default_popup": "popup/popup.html"
+	}
+
+}
