@@ -133,13 +133,11 @@ function openSession(e) {
 				|| tab.url.indexOf('file:') === 0) {
 				continue;
 			}
-			if (tab.url.indexOf('about') === 0) {
-				if (tab.url.indexOf('about:newtab')) {
-					adresses.push('');
-				} else if (tab.url.indexOf('about:blank') !== 0) {
+			if (tab.url.indexOf('about') === 0 
+				&& tab.url.indexOf('about:blank') !== 0) {
 					continue;
-				}
 			}
+			
 			adresses.push(tab.url);
 		}
 		browser.windows.create({ url: adresses});
