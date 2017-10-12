@@ -3,7 +3,8 @@ let folderId;
 browser.bookmarks.search({ title: folderName })
 .then(function (results) {
 	if (results.length === 0) {
-		browser.bookmarks.create({ title: folderName }).then(function (folder) {
+		browser.bookmarks.create({ title: folderName })
+		.then(function (folder) {
 			folderId = Promise.resolve(folder.id);
 		});
 	} else if (results.length === 1) {
@@ -29,8 +30,12 @@ function handleSave() {
 			sName = new Date().toString();
 		}
 		browser.bookmarks.create({ parentId: pId, index: 0, title: sName })
-		.then(saveSession)
-		.then(listSaved);
+		.then(function (sFolder) { 
+			saveSession(sFolder.id);
+			let dom = buildSessionDom(sFolder);
+			let bookmars = document.getElementById('bookmarks');
+			bookmars.insertBefore(dom, bookmars.firstChild);
+		});
 	});
 }
 
@@ -41,46 +46,52 @@ function listSaved() {
 		while(list.firstChild) {
 			list.removeChild(list.firstChild);
 		}
+		let bookmarks = document.getElementById('bookmarks');
 		for(let session of sessions) {
-			let row = document.createElement('div');
-			row.id = session.id;
-			row.className = 'session';
-
-			let restoreHereButton = document.createElement('input');
-			restoreHereButton.type = 'button';
-			restoreHereButton.className = 'restore_here_button';
-			restoreHereButton.value = '⬆';
-			restoreHereButton.title = 'Replace active with saved session',
-			row.appendChild(restoreHereButton);
-			restoreHereButton.addEventListener('click', handleRestoreHere);
-
-			let overrideButton = document.createElement('input');
-			overrideButton.type = 'button';
-			overrideButton.className = 'override_button';
-			overrideButton.title = 'Replace saved with active session',
-			overrideButton.value = '⬇';
-			row.appendChild(overrideButton);
-			overrideButton.addEventListener('click', handleOverride);
-
-			let deleteButton = document.createElement('input');
-			deleteButton.type = 'button';
-			deleteButton.className = 'delete_button';
-			deleteButton.title = 'Delete saved session',
-			deleteButton.value = '🗙';
-			row.appendChild(deleteButton);
-			deleteButton.addEventListener('click', handleDelete);
-
-			let restoreButton = document.createElement('input');
-			restoreButton.type = 'button';
-			restoreButton.className = 'restore_button';
-			restoreButton.value = session.title;
-			restoreButton.title = 'Open saved session in new window',
-			row.appendChild(restoreButton);
-			restoreButton.addEventListener('click', handleRestore);
-			
-			list.appendChild(row);
+			let dom = buildSessionDom(session);
+			bookmarks.appendChild(dom);
 		}
 	});
+}
+
+function buildSessionDom(bookmark) {
+	let row = document.createElement('div');
+	row.id = bookmark.id;
+	row.className = 'session';
+
+	let restoreHereButton = document.createElement('input');
+	restoreHereButton.type = 'button';
+	restoreHereButton.className = 'restore_here_button';
+	restoreHereButton.value = '⬆';
+	restoreHereButton.title = 'Replace active with saved session',
+	row.appendChild(restoreHereButton);
+	restoreHereButton.addEventListener('click', handleRestoreHere);
+
+	let overrideButton = document.createElement('input');
+	overrideButton.type = 'button';
+	overrideButton.className = 'override_button';
+	overrideButton.title = 'Replace saved with active session',
+	overrideButton.value = '⬇';
+	row.appendChild(overrideButton);
+	overrideButton.addEventListener('click', handleOverride);
+
+	let deleteButton = document.createElement('input');
+	deleteButton.type = 'button';
+	deleteButton.className = 'delete_button';
+	deleteButton.title = 'Delete saved session',
+	deleteButton.value = '🗙';
+	row.appendChild(deleteButton);
+	deleteButton.addEventListener('click', handleDelete);
+
+	let restoreButton = document.createElement('input');
+	restoreButton.type = 'button';
+	restoreButton.className = 'restore_button';
+	restoreButton.value = bookmark.title;
+	restoreButton.title = 'Open saved session in new window',
+	row.appendChild(restoreButton);
+	restoreButton.addEventListener('click', handleRestore);
+	
+	return row;
 }
 
 function handleRestoreHere(e) {
@@ -91,11 +102,11 @@ function handleRestoreHere(e) {
 	});
 }
 
-function saveSession(sFolder) {
+function saveSession(folderId) {
 	browser.tabs.query({ currentWindow: true })
 	.then(function (tabList) {
 		for (let i = tabList.length-1; i >=0; i--) {
-			browser.bookmarks.create({ parentId: sFolder.id
+			browser.bookmarks.create({ parentId: folderId
 				, index: i, title: tabList[i].title, url: tabList[i].url });
 		}
 	});
@@ -103,31 +114,23 @@ function saveSession(sFolder) {
 
 function handleOverride(e) {
 	let id = e.target.parentNode.id;
-	let name;
-	let index;
-
-	browser.bookmarks.get(id)
-	.then(function(folder) {
-		name = folder[0].title;
-		index = folder[0].index;
-	}).then(function() {
-		browser.bookmarks.removeTree(id)
-		.then(folderId.then(function(pId) {
-			browser.bookmarks.create({parentId: pId, index: index, title: name})
-			.then(saveSession);
-		}));
-	});	
+	
+	browser.bookmarks.getChildren(id)
+	.then(function (oldEntries) {
+		for(let oldEntry of oldEntries) {
+			browser.bookmarks.remove(oldEntry.id);
+		}
+	})
+	.then(saveSession(id));
 }
 
 function handleDelete(e) {
 	let id = e.target.parentNode.id;
 	browser.bookmarks.removeTree(id)
-	.then(listSaved);
+	.then(document.getElementById('bookmarks').removeChild(document.getElementById(id)));
 }
-
 function handleRestore(e) {
 	let id = e.target.parentNode.id;
-	console.log('restoring: ' + id);
 	browser.bookmarks.getChildren(id)
 	.then(function (tabs) {
 		let adresses = Array();
