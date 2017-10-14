@@ -12,8 +12,16 @@ let folderId = new Promise (function(suc, fail) {
 				if ('undefined' == typeof result.url && 'unfiled_____' === result.parentId) {
 					// found valid candidate
 					if (candidate) {
-						document.body.innerHTML = '<div id="warning">More than one top-level bookmark folder with the name "' 
-						+ folderName +'" was found.<br />Please rename or delete all but one and try again.</div>';
+						let warning = document.createElement('div');
+						warning.id = 'warning';
+						warning.textContent = 'More than one top-level bookmark folder with the name "' 
+						+ folderName +'" was found. Please rename or delete all but one and try again.';
+
+						while(document.body.firstChild) {
+							document.body.removeChild(document.body.firstChild);
+						}
+						document.body.appendChild(warning);
+
 						return fail();
 					} else {
 						candidate = result;
