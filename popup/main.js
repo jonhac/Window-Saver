@@ -2,18 +2,38 @@ const folderName = 'Window Saver';
 let folderId = new Promise (function(suc, fail) {
 	browser.bookmarks.search({ title: folderName })
 	.then(function (results) {
-		console.log('WORKING!!');
 		if (results.length === 0) {
-			browser.bookmarks.create({ title: folderName })
-			.then(function (folder) {
-				suc(folder.id);
-			});
+			createFolder();
 		} else if (results.length === 1) {
-			suc(results[0].id);
+			return suc(results[0].id);
 		} else {
-			fail();
+			let candidate = null;
+			for (let result of results) {
+				if ('undefined' == typeof result.url && 'unfiled_____' === result.parentId) {
+					// found valid candidate
+					if (candidate) {
+						document.body.innerHTML = '<div id="warning">More than one top-level bookmark folder with the name "' 
+						+ folderName +'" was found.<br />Please rename or delete all but one and try again.</div>';
+						return fail();
+					} else {
+						candidate = result;
+					}
+				}
+			}
+			if (candidate) {
+				return suc(candidate.id);
+			} else {
+				createFolder();
+			}
 		}
-	})
+	});
+
+	function createFolder() {
+		browser.bookmarks.create({ title: folderName })
+		.then(function (folder) {
+			suc(folder.id);
+		});
+	}
 });
 window.addEventListener('load', listSaved);
 document.getElementById('save').addEventListener('click', handleSave);
@@ -76,7 +96,7 @@ function buildSessionDom(bookmark) {
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
-	overrideButton.title = 'Override saved window with the active one',
+	overrideButton.title = 'Override saved with active window',
 	overrideButton.value = '⬇';
 	row.appendChild(overrideButton);
 	overrideButton.addEventListener('click', handleOverride);
@@ -144,7 +164,8 @@ function handleRestore(e) {
 			// Filter out priviledged URLs as they cannot be opened by an extension.
 			// see: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
 			let forbidden = false;
-			if (tab.url.indexOf('chrome:') === 0
+			if ('undefined' == typeof tab.url
+				|| tab.url.indexOf('chrome:') === 0
 				|| tab.url.indexOf('javascript:') === 0 	
 				|| tab.url.indexOf('data:') === 0 	
 				|| tab.url.indexOf('file:') === 0) {
