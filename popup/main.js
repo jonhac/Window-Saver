@@ -1,4 +1,4 @@
-const folderName = 'Saved Sessions';
+const folderName = 'Window Saver';
 let folderId = new Promise (function(suc, fail) {
 	browser.bookmarks.search({ title: folderName })
 	.then(function (results) {
@@ -69,14 +69,14 @@ function buildSessionDom(bookmark) {
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
 	restoreHereButton.value = '⬆';
-	restoreHereButton.title = 'Replace active with saved session',
+	restoreHereButton.title = 'Close active and open saved window',
 	row.appendChild(restoreHereButton);
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
-	overrideButton.title = 'Replace saved with active session',
+	overrideButton.title = 'Override saved window with the active one',
 	overrideButton.value = '⬇';
 	row.appendChild(overrideButton);
 	overrideButton.addEventListener('click', handleOverride);
@@ -84,7 +84,7 @@ function buildSessionDom(bookmark) {
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
-	deleteButton.title = 'Delete saved session',
+	deleteButton.title = 'Delete saved window',
 	deleteButton.value = '🗙';
 	row.appendChild(deleteButton);
 	deleteButton.addEventListener('click', handleDelete);
@@ -93,7 +93,7 @@ function buildSessionDom(bookmark) {
 	restoreButton.type = 'button';
 	restoreButton.className = 'restore_button';
 	restoreButton.value = bookmark.title;
-	restoreButton.title = 'Open saved session in new window',
+	restoreButton.title = 'Restore saved window',
 	row.appendChild(restoreButton);
 	restoreButton.addEventListener('click', handleRestore);
 	
