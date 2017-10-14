@@ -1,5 +1,6 @@
 const folderName = 'Saved Sessions';
 let folderId;
+
 browser.bookmarks.search({ title: folderName })
 .then(function (results) {
 	if (results.length === 0) {
@@ -58,6 +59,10 @@ function buildSessionDom(bookmark) {
 	let row = document.createElement('div');
 	row.id = bookmark.id;
 	row.className = 'session';
+	// mouse event handlers are in drag_and_drop.js
+	row.addEventListener('mousedown', handleMouseDown);
+	row.addEventListener('mouseenter', handleMouseEnter);
+	row.addEventListener('mouseleave', handleMouseLeave);
 
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
