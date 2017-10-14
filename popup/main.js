@@ -1,21 +1,21 @@
 const folderName = 'Saved Sessions';
-let folderId;
-
-browser.bookmarks.search({ title: folderName })
-.then(function (results) {
-	if (results.length === 0) {
-		browser.bookmarks.create({ title: folderName })
-		.then(function (folder) {
-			folderId = Promise.resolve(folder.id);
-		});
-	} else if (results.length === 1) {
-		folderId = Promise.resolve(results[0].id);
-	} else {
-		throw (new Error('to do'));
-	}
-})
-.then(listSaved);
-
+let folderId = new Promise (function(suc, fail) {
+	browser.bookmarks.search({ title: folderName })
+	.then(function (results) {
+		console.log('WORKING!!');
+		if (results.length === 0) {
+			browser.bookmarks.create({ title: folderName })
+			.then(function (folder) {
+				suc(folder.id);
+			});
+		} else if (results.length === 1) {
+			suc(results[0].id);
+		} else {
+			fail();
+		}
+	})
+});
+window.addEventListener('load', listSaved);
 document.getElementById('save').addEventListener('click', handleSave);
 
 document.getElementById('name_input').addEventListener('keydown', function(e) {
