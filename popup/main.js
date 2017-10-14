@@ -17,7 +17,6 @@ let folderId = new Promise (function(suc, fail) {
 });
 window.addEventListener('load', listSaved);
 document.getElementById('save').addEventListener('click', handleSave);
-
 document.getElementById('name_input').addEventListener('keydown', function(e) {
 	if (e.key === 'Enter') {
 		handleSave();
@@ -28,7 +27,9 @@ function handleSave() {
 	folderId.then(function (pId) {
 		let sName = document.getElementById('name_input').value;
 		if (sName === '') {
-			sName = new Date().toString();
+			let date = new Date();
+			sName = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
+				+ ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 		}
 		browser.bookmarks.create({ parentId: pId, index: 0, title: sName })
 		.then(function (sFolder) { 
