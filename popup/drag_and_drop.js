@@ -1,16 +1,16 @@
 document.addEventListener('mouseup', handleMouseUp);
 document.addEventListener('mouseleave', handleMouseLeavePopup);
 
-let draged = null;
+let grabed = null;
 let dragStartY;
 
 function handleMouseDown(e) {
-	draged = getValidDragNode(e.target);
-	draged.classList.add('moving');
+	grabed = getValidDragNode(e.target);
+	grabed.classList.add('moving');
 	dragStartY = e.pageY;
 }
 function handleMouseEnter(e) {
-	if (!draged || draged === e.target) {
+	if (!grabed || grabed === e.target) {
 		return;
 	}
 	if (e.pageY < dragStartY) {
@@ -27,21 +27,21 @@ function handleMouseLeave(e) {
 	}
 }
 function handleMouseLeavePopup(e) {
-	if (draged) {
-		draged.classList.remove('moving');
-		draged = null;
+	if (grabed) {
+		grabed.classList.remove('moving');
+		grabed = null;
 	}
 }
 function handleMouseUp(e) {
-	if (!draged) {
+	if (!grabed) {
 		return;
 	}
 
 	let target = getValidDragNode(e.target);
 
 	if (!target) {
-		draged.classList.remove('moving');
-		draged = null;
+		grabed.classList.remove('moving');
+		grabed = null;
 	} else {
 		let targetedIndex = 0;
 		
@@ -58,24 +58,24 @@ function handleMouseUp(e) {
 			target = target.nextSibling;
 		} 
 
-		if (target !== draged) {
+		if (target !== grabed) {
 			// move the HTML
-			let parent = draged.parentNode;
-			parent.removeChild(draged);
-			parent.insertBefore(draged, target);
+			let parent = grabed.parentNode;
+			parent.removeChild(grabed);
+			parent.insertBefore(grabed, target);
 
 			// move the bookmarks
 			folderId.then(function(pId) {
 				browser.bookmarks.move(
-					draged.id, {parentId: pId, index: targetedIndex}
+					grabed.id, {parentId: pId, index: targetedIndex}
 				);
 			}).then (function () {
-				draged.classList.remove('moving');
-				draged = null;
+				grabed.classList.remove('moving');
+				grabed = null;
 			});
 		} else {
-			draged.classList.remove('moving');
-			draged = null;
+			grabed.classList.remove('moving');
+			grabed = null;
 		}
 	}
 }
