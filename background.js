@@ -1,8 +1,8 @@
 const defaultFolderName = 'Window Saver';
 browser.bookmarks.onRemoved.addListener(handleFolderRemoved);
 
-initSettings();
-async function initSettings() {
+initFolderSettings();
+async function initFolderSettings() {
 	let foundSettings = await browser.storage.local.get('folderId');
 	if('undefined' == typeof foundSettings.folderId) {
 		let id = await findOrCreateFolder(defaultFolderName);
@@ -47,8 +47,8 @@ async function findOrCreateFolder(name) {
 async function handleFolderRemoved(id, info) {
 	let settings = await browser.storage.local.get('folderId');
 	if (id === settings.folderId) {
-		// They deleted our folder. We will recreate it immediately.
-		let newFolder = await browser.bookmarks.create({ title: defaultFolderName });
-		browser.storage.local.set({ 'folderId': newFolder.id });
+		// They deleted our folder! We go back to the default.
+		let id = await findOrCreateFolder(defaultFolderName);
+		browser.storage.local.set({ 'folderId': id });
 	}
 }
