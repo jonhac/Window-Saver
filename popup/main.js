@@ -5,6 +5,19 @@ document.getElementById('name_input').addEventListener('keydown', function(e) {
 		handleSave();
 	}
 });
+document.getElementById('settings').addEventListener('click', function(e) {
+	browser.runtime.openOptionsPage();
+	window.close();
+});
+document.getElementById('version').addEventListener('click', function() {
+	window.location.href = browser.extension.getURL('popup/changelog.html');
+});
+displayVersion();
+
+async function displayVersion() {
+	let info = await browser.management.getSelf();
+	document.getElementById('version').innerText = info.version;
+};
 
 async function handleSave() {
 	let settings = await browser.storage.local.get('folderId');

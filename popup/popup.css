@@ -5,6 +5,7 @@
 #create {
 	display: flex;
 	border: 1px solid black;
+	margin-bottom: 5px;
 }
 #name_input {
 	flex: 1;
@@ -29,6 +30,9 @@ input {
 .session {
 	width: 100%;
 	display: flex;
+	border: 1px solid transparent;
+	margin-bottom: 3px;
+	margin-top: 3px;
 }
 .session:hover {
 	border: 1px solid black;
@@ -91,4 +95,25 @@ input {
 #warning {
 	border: 3px solid red;
 	padding: 5px;
+}
+
+#footer {
+	margin-top: 5px;
+	display: flex;
+	background-color: inherit;
+	background-color: rgba(76, 76, 76, 0.15);
+}
+#name {
+	flex: 1;
+	text-align: center;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#settings, #version, #back {
+	border: 1px solid black;
+	background-color: rgba(76, 76, 76, 0.15);
+}
+#settings:hover, #version:hover, #back:hover {
+	color: rgba(76, 76, 76);
+	background-color: rgb(179, 179, 179);
 }
