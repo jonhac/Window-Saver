@@ -32,7 +32,7 @@ function handleMouseLeavePopup(e) {
 		grabed = null;
 	}
 }
-function handleMouseUp(e) {
+async function handleMouseUp(e) {
 	if (!grabed) {
 		return;
 	}
@@ -65,14 +65,16 @@ function handleMouseUp(e) {
 			parent.insertBefore(grabed, target);
 
 			// move the bookmarks
-			folderId.then(function(pId) {
-				browser.bookmarks.move(
-					grabed.id, {parentId: pId, index: targetedIndex}
-				);
-			}).then (function () {
-				grabed.classList.remove('moving');
-				grabed = null;
-			});
+			let settings = await browser.storage.local.get('folderId');
+			let folderId = settings.folderId;
+
+			browser.bookmarks.move(
+				grabed.id, {parentId: folderId, index: targetedIndex}
+			)
+
+			// stop moving
+			grabed.classList.remove('moving');
+			grabed = null;
 		} else {
 			grabed.classList.remove('moving');
 			grabed = null;

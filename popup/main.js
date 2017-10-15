@@ -1,48 +1,3 @@
-const folderName = 'Window Saver';
-let folderId = new Promise (function(suc, fail) {
-	browser.bookmarks.search({ title: folderName })
-	.then(function (results) {
-		if (results.length === 0) {
-			createFolder();
-		} else if (results.length === 1) {
-			return suc(results[0].id);
-		} else {
-			let candidate = null;
-			for (let result of results) {
-				if ('undefined' == typeof result.url && 'unfiled_____' === result.parentId) {
-					// found valid candidate
-					if (candidate) {
-						let warning = document.createElement('div');
-						warning.id = 'warning';
-						warning.textContent = 'More than one top-level bookmark folder with the name "' 
-						+ folderName +'" was found. Please rename or delete all but one and try again.';
-
-						while(document.body.firstChild) {
-							document.body.removeChild(document.body.firstChild);
-						}
-						document.body.appendChild(warning);
-
-						return fail();
-					} else {
-						candidate = result;
-					}
-				}
-			}
-			if (candidate) {
-				return suc(candidate.id);
-			} else {
-				createFolder();
-			}
-		}
-	});
-
-	function createFolder() {
-		browser.bookmarks.create({ title: folderName })
-		.then(function (folder) {
-			suc(folder.id);
-		});
-	}
-});
 window.addEventListener('load', listSaved);
 document.getElementById('save').addEventListener('click', handleSave);
 document.getElementById('name_input').addEventListener('keydown', function(e) {
@@ -51,27 +6,30 @@ document.getElementById('name_input').addEventListener('keydown', function(e) {
 	}
 });
 
-function handleSave() {
-	folderId.then(function (pId) {
-		let sName = document.getElementById('name_input').value;
-		if (sName === '') {
-			let date = new Date();
-			sName = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
-				+ ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-		}
-		browser.bookmarks.create({ parentId: pId, index: 0, title: sName })
-		.then(function (sFolder) { 
-			saveSession(sFolder.id);
-			let dom = buildSessionDom(sFolder);
-			let bookmars = document.getElementById('bookmarks');
-			bookmars.insertBefore(dom, bookmars.firstChild);
-		});
-	});
+async function handleSave() {
+	let settings = await browser.storage.local.get('folderId');
+	let folderId = settings.folderId;
+
+	let name = document.getElementById('name_input').value;
+	if (name === '') {
+		let date = new Date();
+		name = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate()
+			+ ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+	}
+
+	let windowFolder = await browser.bookmarks.create({ parentId: folderId, index: 0, title: name })
+	saveSession(windowFolder.id);
+
+	let dom = buildSessionDom(windowFolder);
+	let bookmarks = document.getElementById('bookmarks');
+	bookmarks.insertBefore(dom, bookmarks.firstChild);
 }
 
-function listSaved() {
-	folderId.then(browser.bookmarks.getChildren)
-	.then(function (sessions) {
+async function listSaved() {
+		let settings = await browser.storage.local.get('folderId');
+		let folderId = settings.folderId;
+		let sessions = await browser.bookmarks.getChildren(folderId);
+
 		let list = document.getElementById('bookmarks');
 		while(list.firstChild) {
 			list.removeChild(list.firstChild);
@@ -81,7 +39,6 @@ function listSaved() {
 			let dom = buildSessionDom(session);
 			bookmarks.appendChild(dom);
 		}
-	});
 }
 
 function buildSessionDom(bookmark) {
@@ -128,12 +85,10 @@ function buildSessionDom(bookmark) {
 	return row;
 }
 
-function handleRestoreHere(e) {
+async function handleRestoreHere(e) {
 	handleRestore(e);
-	browser.windows.getCurrent()
-	.then(function(window) {
-		browser.windows.remove(window.id);
-	});
+	let window = await browser.windows.getCurrent();
+	browser.windows.remove(window.id);
 }
 
 function saveSession(folderId) {
@@ -146,22 +101,22 @@ function saveSession(folderId) {
 	});
 }
 
-function handleOverride(e) {
-	let id = e.target.parentNode.id;
-	
-	browser.bookmarks.getChildren(id)
-	.then(function (oldEntries) {
-		for(let oldEntry of oldEntries) {
-			browser.bookmarks.remove(oldEntry.id);
-		}
-	})
-	.then(saveSession(id));
+async function handleOverride(e) {
+	let id = e.target.parentNode.id;	
+
+	let oldEntries = await browser.bookmarks.getChildren(id);
+	for(let oldEntry of oldEntries) {
+		browser.bookmarks.remove(oldEntry.id);
+	}
+
+	saveSession(id);
 }
 
 function handleDelete(e) {
 	let id = e.target.parentNode.id;
-	browser.bookmarks.removeTree(id)
-	.then(document.getElementById('bookmarks').removeChild(document.getElementById(id)));
+
+	browser.bookmarks.removeTree(id);
+	document.getElementById('bookmarks').removeChild(document.getElementById(id));
 }
 function handleRestore(e) {
 	let id = e.target.parentNode.id;
