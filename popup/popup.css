@@ -4,17 +4,21 @@
 
 #create {
 	display: flex;
-}
-#create:hover {
-	background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid black;
 }
 #name_input {
-	background-color: inherit;
-	border-style: none;
 	flex: 1;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	background-color: rgba(76, 76, 76, 0.3);
+}
+#save {
+	border-left: 1px solid black;
+	background-color: rgba(76, 76, 76, 0.15);
 }
 #save:hover {
-	background-color: rgba(0, 0, 0, 0.25);
+	color: #000;
+	background-color: #177ee5;
 }
 
 input {
@@ -27,36 +31,61 @@ input {
 	display: flex;
 }
 .session:hover {
-	background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid black;
+	background-color: rgba(76, 76, 76, 0.15);
 }
 
-.restore_button{
+.restore_button {
 	flex: 1;
 }
+
 .restore_button:hover {
-	background-color: rgba(0, 0, 0, 0.25);
+	color: rgba(76, 76, 76);
+	background-color: rgb(179, 179, 179);
 }
 .delete_button:hover {
+	color: #fff;
 	background-color: red;
 }
 .override_button:hover {
+	color: #fff;
 	background-color: orange;
 }
 .restore_here_button:hover {
+	color: #fff;
 	background-color: orange;
 }
 
 .moving {
-	border: 1px, dashed, black;
-	background-color: rgba(0, 0, 0, 0.05);
+	border: 1px solid black;
+	background-color: rgba(179, 179, 179, .3);
 }
-.drop_over {
-	border-top: 3px solid black;
+.drop_over:hover {
+	border-top: 3px solid #177ee5;
+	background-color: inherit;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: none;
 	cursor: move;
 }
-.drop_under {
-	border-bottom: 3px solid black;
+.drop_under:hover {
+	border-bottom: 3px solid #177ee5;
+	background-color: inherit;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
 	cursor: move;
+}
+.drop_over > .restore_button:hover
+, .drop_under > .restore_button:hover
+, .drop_over > .delete_button:hover
+, .drop_under > .delete_button:hover
+, .drop_over > .override_button:hover
+, .drop_under > .override_button:hover
+, .drop_over > .restore_here_button:hover
+, .drop_under > .restore_here_button:hover {
+	color: inherit;
+	background-color: inherit;
 }
 
 #warning {

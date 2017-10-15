@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Window Saver",
-	"version": "1.0",
+	"version": "1.1",
 
 	"description": "Saves and restores complete windows in bookmarks.",
 	"homepage_url": "https://github.com/bit-tinker/Window-Saver",
@@ -15,10 +15,10 @@
 	},
 
 	"icons": {
-		"48": "icons/icon.svg",
-		"64": "icons/icon.svg",
-		"96": "icons/icon.svg",
-		"128": "icons/icon.svg"
+		"48": "icons/dark.svg",
+		"64": "icons/dark.svg",
+		"96": "icons/dark.svg",
+		"128": "icons/dark.svg"
 	},
 
 	"permissions": [
@@ -27,9 +27,33 @@
 	],
 
 	"browser_action": {
-		"default_icon": "icons/icon.svg",
 		"default_title": "Window Saver",
-		"default_popup": "popup/popup.html"
+		"default_popup": "popup/popup.html",
+		"default_icon": {
+			"16": "icons/dark.svg",
+			"32": "icons/dark.svg",
+			"64": "icons/dark.svg",
+			"128": "icons/dark.svg"
+		},
+		"theme_icons": [
+			{
+				"size": 16,
+				"light": "icons/light.svg",
+				"dark": "icons/dark.svg"
+			}, {
+				"size": 32,
+				"light": "icons/light.svg",
+				"dark": "icons/dark.svg"
+			}, {
+				"size": 64,
+				"light": "icons/light.svg",
+				"dark": "icons/dark.svg"
+			}, {
+				"size": 128,
+				"light": "icons/light.svg",
+				"dark": "icons/dark.svg"
+			}
+		]
 	}
 
 }
