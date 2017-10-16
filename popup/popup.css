@@ -20,7 +20,7 @@
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #save:hover {
-	color: #000;
+	color: #fff;
 	background-color: #177ee5;
 }
 
@@ -46,7 +46,7 @@ input {
 }
 
 .restore_button:hover {
-	color: #000;
+	color: #fff;
 	background-color: #177ee5;
 }
 .delete_button:hover {
@@ -118,6 +118,6 @@ input {
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #settings:hover, #version:hover, #back:hover {
-	color: #000;
+	color: #fff;
 	background-color: #177ee5;
 }
