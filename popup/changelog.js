@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let changelog = {
-	1.2: '- Brand new settings page\n- Displaying changelogs\n- Minor style improvements'
+	1.2: '- Brand new settings page\n- Displaying changelogs\n- Minor style improvements',
+	1.3: '- 1.3 Changes'
 };
 
 async function init() {
