@@ -10,6 +10,7 @@
 	{
 	    "gecko":
 		{
+			"id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
 			"strict_min_version": "55.0"
 	    }
 	},
