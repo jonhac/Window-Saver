@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Window Saver",
-	"version": "1.1",
+	"version": "1.2",
 
 	"description": "Saves and restores complete windows in bookmarks.",
 	"homepage_url": "https://github.com/bit-tinker/Window-Saver",
@@ -10,6 +10,7 @@
 	{
 	    "gecko":
 		{
+			"id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
 			"strict_min_version": "55.0"
 	    }
 	},
@@ -23,8 +24,17 @@
 
 	"permissions": [
 		"bookmarks",
-		"tabs"
+		"tabs",
+		"storage"
 	],
+
+	"background": {
+		"scripts": ["background.js"]
+	},
+	
+	"options_ui": {
+		"page": "options/options.html"
+	},
 
 	"browser_action": {
 		"default_title": "Window Saver",
