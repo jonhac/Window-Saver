@@ -33,28 +33,44 @@ async function handleSave() {
 	let windowFolder = await browser.bookmarks.create({ parentId: folderId, index: 0, title: name })
 	saveSession(windowFolder.id);
 
-	let dom = buildSessionDom(windowFolder);
+	let dom = buildEntryDom(windowFolder);
 	let bookmarks = document.getElementById('bookmarks');
+	showOrRemoveWelcome();
 	bookmarks.insertBefore(dom, bookmarks.firstChild);
 }
 
 async function listSaved() {
 		let settings = await browser.storage.local.get('folderId');
 		let folderId = settings.folderId;
-		let sessions = await browser.bookmarks.getChildren(folderId);
+		let windows = await browser.bookmarks.getChildren(folderId);
 
 		let list = document.getElementById('bookmarks');
 		while(list.firstChild) {
 			list.removeChild(list.firstChild);
 		}
-		let bookmarks = document.getElementById('bookmarks');
-		for(let session of sessions) {
-			let dom = buildSessionDom(session);
-			bookmarks.appendChild(dom);
+		
+		for(let window of windows) {
+			let dom = buildEntryDom(window);
+			list.appendChild(dom);
 		}
+		showOrRemoveWelcome();
 }
 
-function buildSessionDom(bookmark) {
+function showOrRemoveWelcome() {
+	let list = document.getElementById('bookmarks');
+	if (list.childNodes.length === 0) {
+		let welcome = document.createElement('div');
+		welcome.id = 'welcome';
+		welcome.innerText = 'Welcome to Window Saver!\nHit the save button to get started.';
+		list.appendChild(welcome);
+	} else if (list.childNodes.length === 1) {
+		if (list.firstChild.id === 'welcome') {
+			list.removeChild(list.firstChild);
+		}
+	}
+}
+
+function buildEntryDom(bookmark) {
 	let row = document.createElement('div');
 	row.id = bookmark.id;
 	row.className = 'session';
@@ -130,6 +146,7 @@ function handleDelete(e) {
 
 	browser.bookmarks.removeTree(id);
 	document.getElementById('bookmarks').removeChild(document.getElementById(id));
+	showOrRemoveWelcome();
 }
 function handleRestore(e) {
 	let id = e.target.parentNode.id;
