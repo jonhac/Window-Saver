@@ -148,29 +148,33 @@ function handleDelete(e) {
 	document.getElementById('bookmarks').removeChild(document.getElementById(id));
 	showOrRemoveWelcome();
 }
-function handleRestore(e) {
+async function handleRestore(e) {
 	let id = e.target.parentNode.id;
-	browser.bookmarks.getChildren(id)
-	.then(function (tabs) {
-		let adresses = Array();
-		for (let tab of tabs) {
-			// Filter out priviledged URLs as they cannot be opened by an extension.
-			// see: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-			let forbidden = false;
-			if ('undefined' == typeof tab.url
-				|| tab.url.indexOf('chrome:') === 0
-				|| tab.url.indexOf('javascript:') === 0 	
-				|| tab.url.indexOf('data:') === 0 	
-				|| tab.url.indexOf('file:') === 0) {
-				continue;
-			}
-			if (tab.url.indexOf('about') === 0 
-				&& tab.url.indexOf('about:blank') !== 0) {
-					continue;
-			}
-			
-			adresses.push(tab.url);
+	let tabs = await browser.bookmarks.getChildren(id);
+
+	let adresses = Array();
+	for (let tab of tabs) {
+		// Filter out priviledged URLs as they cannot be opened by an extension.
+		// see: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
+		let forbidden = false;
+		if ('undefined' == typeof tab.url
+			|| tab.url.indexOf('chrome:') === 0
+			|| tab.url.indexOf('javascript:') === 0 	
+			|| tab.url.indexOf('data:') === 0 	
+			|| tab.url.indexOf('file:') === 0) {
+			continue;
 		}
-		browser.windows.create({ url: adresses});
-	});
+		if (tab.url.indexOf('about') === 0 
+			&& tab.url.indexOf('about:blank') !== 0) {
+				continue;
+		}
+		
+		adresses.push(tab.url);
+	}
+	browser.windows.create({ url: adresses});
+
+	let settings = await browser.storage.local.get('deleteAfter');
+	if (settings.deleteAfter) {
+		handleDelete(e);
+	}
 }

@@ -13,8 +13,12 @@ async function init() {
 		}
 	});
 	document.getElementById('change').addEventListener('click', changeFolder);	
+
+	loadAfterSettings();
+	document.getElementById('delete_after').addEventListener('click', changeDeleteAfter);
 } 
 
+// Folder------------------------
 async function loadFolderName() {
 	let settings = await browser.storage.local.get('folderId');
 	let folderId = settings.folderId;
@@ -59,4 +63,17 @@ async function changeFolder() {
 	let bp = browser.extension.getBackgroundPage();
 	let newId = await bp.findOrCreateFolder(name);
 	browser.storage.local.set({ 'folderId': newId });
+}
+
+// Close after------------------------
+
+async function loadAfterSettings() {
+	let box = document.getElementById('delete_after');
+	let setting = await browser.storage.local.get('deleteAfter');
+	box.checked = setting.deleteAfter;
+}
+
+async function changeDeleteAfter() {
+	let box = document.getElementById('delete_after');
+	browser.storage.local.set({ deleteAfter: box.checked });
 }
