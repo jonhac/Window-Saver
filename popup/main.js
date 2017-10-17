@@ -59,7 +59,7 @@ async function listSaved() {
 function showOrRemoveWelcome() {
 	let list = document.getElementById('bookmarks');
 	if (list.childNodes.length === 0) {
-		let welcome = document.createElement('div');
+		let welcome = document.createElement('button');
 		welcome.id = 'welcome';
 		welcome.innerText = 'Welcome to Window Saver!\nHit the save button to get started.';
 		list.appendChild(welcome);

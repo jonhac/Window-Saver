@@ -99,6 +99,12 @@ input {
 	padding: 5px;
 }
 
+#welcome {
+	background-color: inherit;
+	pointer-events: none;
+	text-align: left;
+}
+
 .footer {
 	margin-top: 5px;
 	display: flex;
