@@ -1,6 +1,8 @@
 * {
 	border-style: none;
 }
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
 
 #create {
 	display: flex;
@@ -18,7 +20,7 @@
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #save:hover {
-	color: #000;
+	color: #fff;
 	background-color: #177ee5;
 }
 
@@ -44,8 +46,8 @@ input {
 }
 
 .restore_button:hover {
-	color: rgba(76, 76, 76);
-	background-color: rgb(179, 179, 179);
+	color: #fff;
+	background-color: #177ee5;
 }
 .delete_button:hover {
 	color: #fff;
@@ -97,23 +99,31 @@ input {
 	padding: 5px;
 }
 
-#footer {
+#welcome {
+	background-color: inherit;
+	pointer-events: none;
+	text-align: left;
+}
+
+.footer {
 	margin-top: 5px;
 	display: flex;
-	background-color: inherit;
+	justify-content: center;
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #name {
 	flex: 1;
 	text-align: center;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	pointer-events: none;
+	background-color: rgba(76, 76, 76, 0.15);
 }
 #settings, #version, #back {
 	border: 1px solid black;
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #settings:hover, #version:hover, #back:hover {
-	color: rgba(76, 76, 76);
-	background-color: rgb(179, 179, 179);
+	color: #fff;
+	background-color: #177ee5;
 }
