@@ -10,7 +10,7 @@ document.getElementById('settings').addEventListener('click', function(e) {
 	window.close();
 });
 document.getElementById('version').addEventListener('click', function() {
-	window.location.href = browser.extension.getURL('popup/changelog.html');
+	window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
 });
 displayVersion();
 
@@ -152,26 +152,23 @@ async function handleRestore(e) {
 	let id = e.target.parentNode.id;
 	let tabs = await browser.bookmarks.getChildren(id);
 
-	let adresses = Array();
+	let addresses = new Array();
 	for (let tab of tabs) {
 		// Filter out priviledged URLs as they cannot be opened by an extension.
 		// see: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-		let forbidden = false;
 		if ('undefined' == typeof tab.url
-			|| tab.url.indexOf('chrome:') === 0
-			|| tab.url.indexOf('javascript:') === 0 	
-			|| tab.url.indexOf('data:') === 0 	
-			|| tab.url.indexOf('file:') === 0) {
-			continue;
+		|| tab.url.indexOf('chrome:') === 0
+		|| tab.url.indexOf('javascript:') === 0 	
+		|| tab.url.indexOf('data:') === 0 	
+		|| tab.url.indexOf('file:') === 0 
+		|| (tab.url.indexOf('about:') === 0 && tab.url.indexOf('about:blank') !== 0)) {
+			addresses.push(browser.extension.getURL(
+				'placeholder/placeholder.html?r=' + tab.url + '&t=' + tab.title));
+		} else {
+			addresses.push(tab.url);
 		}
-		if (tab.url.indexOf('about') === 0 
-			&& tab.url.indexOf('about:blank') !== 0) {
-				continue;
-		}
-		
-		adresses.push(tab.url);
 	}
-	browser.windows.create({ url: adresses});
+	browser.windows.create({ url: addresses});
 
 	let settings = await browser.storage.local.get('deleteAfter');
 	if (settings.deleteAfter) {

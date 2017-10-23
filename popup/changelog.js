@@ -2,10 +2,14 @@ document.addEventListener("DOMContentLoaded", init);
 
 let changelog = {
 	1.2: '- Brand new settings page\n- Displaying changelogs\n- Minor style improvements',
-	1.3: '- New option to delete stored windows after restoring them\n- Some style improvements'
+	1.3: '- New option to delete stored windows after restoring them\n- Some style improvements',
+	1.4: '- Added a placeholder to handle restoring restricted pages like about:config'
 };
 
 async function init() {
+	let params = new URLSearchParams(window.location.search);
+	document.body.style.width = params.get('w') + 'px';
+
 	document.getElementById('back').addEventListener('click', function() {
 		window.location.href = browser.extension.getURL('popup/popup.html');
 	});
