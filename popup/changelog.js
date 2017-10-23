@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", init);
 let changelog = {
 	1.2: '- Brand new settings page\n- Displaying changelogs\n- Minor style improvements',
 	1.3: '- New option to delete stored windows after restoring them\n- Some style improvements',
-	1.4: '- Added a placeholder to handle restoring restricted pages like about:config'
+	1.4: '- Added a placeholder to handle restoring restricted pages like about:config',
+	1.5: ''
 };
 
 async function init() {
