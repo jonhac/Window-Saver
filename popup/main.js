@@ -115,7 +115,7 @@ function buildEntryDom(bookmark) {
 }
 
 async function handleRestoreHere(e) {
-	handleRestore(e);
+	await handleRestore(e);
 	let window = await browser.windows.getCurrent();
 	browser.windows.remove(window.id);
 }

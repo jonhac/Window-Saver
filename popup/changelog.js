@@ -4,7 +4,7 @@ let changelog = {
 	1.2: '- Brand new settings page\n- Displaying changelogs\n- Minor style improvements',
 	1.3: '- New option to delete stored windows after restoring them\n- Some style improvements',
 	1.4: '- Added a placeholder to handle restoring restricted pages like about:config',
-	1.5: ''
+	1.5: '- The "delete after restore" setting will be respected for "close and restore (⬆)" as well'
 };
 
 async function init() {
