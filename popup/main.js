@@ -10,7 +10,7 @@ document.getElementById('settings').addEventListener('click', function(e) {
 	window.close();
 });
 document.getElementById('version').addEventListener('click', function() {
-	window.location.href = browser.extension.getURL('popup/changelog.html');
+	window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
 });
 displayVersion();
 

@@ -2,6 +2,7 @@
 	width: 100%;
 	text-align: center;
 	pointer-events: none;
+	background-color: rgba(76, 76, 76, 0.15);
 }
 #changelog {
 	background-color: inherit;
