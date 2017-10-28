@@ -5,3 +5,8 @@ div {
 input {
 	vertical-align: middle; 
 }
+#confirmations {
+	border-left: 1px solid #000;
+	margin-left: 2em;
+	padding-left: 0.5em;
+}

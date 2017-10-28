@@ -1,16 +1,33 @@
 const defaultFolderName = 'Window Saver';
 browser.bookmarks.onRemoved.addListener(handleFolderRemoved);
 
-initFolderSettings();
-initDeleteAfterSettings();
+initDefaultSettings();
 
-async function initFolderSettings() {
-	let foundSettings = await browser.storage.local.get('folderId');
-	if('undefined' == typeof foundSettings.folderId) {
-		let id = await findOrCreateFolder(defaultFolderName);
-		browser.storage.local.set({ 'folderId': id });
+function initDefaultSettings() {
+	initFolderSettings();
+	initSetting('deleteAfter', false);
+	initSetting('confirmSavePrivate', true);
+	initSetting('confirmDelete', true);
+	initSetting('confirmOverride', true);
+	initSetting('confirmCloseNonPrivate', false);
+	initSetting('confirmClosePrivate', false);
+
+	async function initSetting(name, value) {
+		let setting = await browser.storage.local.get(name);
+		if('undefined' == typeof setting[name]) {
+			browser.storage.local.set({ [name]: value });
+		}
+	}
+
+	async function initFolderSettings() {
+		let foundSettings = await browser.storage.local.get('folderId');
+		if('undefined' == typeof foundSettings.folderId) {
+			let id = await findOrCreateFolder(defaultFolderName);
+			browser.storage.local.set({ 'folderId': id });
+		}
 	}
 }
+
 
 async function findOrCreateFolder(name) {
 	let results = await browser.bookmarks.search({ title: name });
@@ -55,10 +72,3 @@ async function handleFolderRemoved(id, info) {
 	}
 }
 
-async function initDeleteAfterSettings() {
-	let setting = await browser.storage.local.get('deleteAfter');
-
-	if('undefined' == typeof settings.deleteAfter) {
-		browser.storage.local.set({ deleteAfter: false });
-	}
-}
