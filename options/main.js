@@ -22,7 +22,6 @@ async function init() {
 }
 
 async function loadCheckBox(element, settingName) {
-	console.log('setting: ' + settingName);
 	let setting = await browser.storage.local.get(settingName);
 	element.checked = setting[settingName];
 }
