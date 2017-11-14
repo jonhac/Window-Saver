@@ -6,7 +6,7 @@
 
 #create {
 	display: flex;
-	border: 1px solid black;
+	border: thin solid black;
 	margin-bottom: 5px;
 }
 #name_input {
@@ -16,7 +16,7 @@
 	background-color: rgba(76, 76, 76, 0.3);
 }
 #save {
-	border-left: 1px solid black;
+	border-left: thin solid black;
 	background-color: rgba(76, 76, 76, 0.15);
 }
 #save:hover {
@@ -32,12 +32,12 @@ input {
 .session {
 	width: 100%;
 	display: flex;
-	border: 1px solid transparent;
+	border: thin solid transparent;
 	margin-bottom: 3px;
 	margin-top: 3px;
 }
 .session:hover {
-	border: 1px solid black;
+	border-color: black;
 	background-color: rgba(76, 76, 76, 0.15);
 }
 
@@ -65,33 +65,38 @@ input {
 }
 
 .moving {
-	border: 1px solid black;
+	border-color: black;
 	background-color: rgba(179, 179, 179, .3);
+	cursor: grabbing;
 }
 .drop_over:hover {
-	border-top: 3px solid #177ee5;
 	background-color: inherit;
-	border-bottom-style: none;
-	border-left-style: none;
-	border-right-style: none;
-	cursor: move;
+	border-top-color:#177ee5;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	cursor: grabbing;
 }
 .drop_under:hover {
-	border-bottom: 3px solid #177ee5;
 	background-color: inherit;
-	border-top-style: none;
-	border-left-style: none;
-	border-right-style: none;
-	cursor: move;
+	border-top-color: transparent;
+	border-bottom-color: #177ee5;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	cursor: grabbing;
 }
 .drop_over > .restore_button:hover
 , .drop_under > .restore_button:hover
+, .moving > .restore_button:hover
 , .drop_over > .delete_button:hover
 , .drop_under > .delete_button:hover
+, .moving > .delete_button:hover
 , .drop_over > .override_button:hover
 , .drop_under > .override_button:hover
+, .moving > .override_button:hover
 , .drop_over > .restore_here_button:hover
-, .drop_under > .restore_here_button:hover {
+, .drop_under > .restore_here_button:hover
+, .moving > .restore_here_button:hover {
 	color: inherit;
 	background-color: inherit;
 }
