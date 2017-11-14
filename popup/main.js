@@ -82,34 +82,35 @@ function buildEntryDom(bookmark) {
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
-	restoreHereButton.value = '⬆';
-	restoreHereButton.title = 'Close active and open saved window',
-	row.appendChild(restoreHereButton);
+	restoreHereButton.value = '🠉';
+	restoreHereButton.title = 'Close active and open saved window';
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
-	overrideButton.title = 'Override saved with active window',
-	overrideButton.value = '⬇';
-	row.appendChild(overrideButton);
+	overrideButton.title = 'Override saved with active window';
+	overrideButton.value = '🠋';
 	overrideButton.addEventListener('click', handleOverride);
 
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
-	deleteButton.title = 'Delete saved window',
+	deleteButton.title = 'Delete saved window';
 	deleteButton.value = '🗙';
-	row.appendChild(deleteButton);
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
 	restoreButton.type = 'button';
 	restoreButton.className = 'restore_button';
 	restoreButton.value = bookmark.title;
-	restoreButton.title = 'Restore saved window',
-	row.appendChild(restoreButton);
+	restoreButton.title = 'Open saved window';
 	restoreButton.addEventListener('click', handleRestore);
+
+	row.appendChild(deleteButton);
+	row.appendChild(overrideButton);
+	row.appendChild(restoreButton);
+	row.appendChild(restoreHereButton);
 	
 	return row;
 }
