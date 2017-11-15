@@ -37,9 +37,13 @@ function toggleConfirmation(sender, location, message) {
 		let element = document.createElement('div');
 		element.id = 'confirmation';
 		element.innerText = message;
+		element.style.width = location.offsetWidth + 'px';
+		element.style.height = location.offsetHeight + 'px';
+		element.style.left = location.offsetLeft + 'px';
 
 		confirmationLocation = location;
-		confirmationLocation.replaceWith(element);
+		confirmationLocation.classList.add('hidden');
+		confirmationLocation.parentNode.insertBefore(element, confirmationLocation);
 
 		confirmationSender.addEventListener('mouseleave', cancelConfirmation);
 
@@ -50,8 +54,9 @@ function toggleConfirmation(sender, location, message) {
 function cancelConfirmation() {
 	confirmationSender.removeEventListener('mouseleave', cancelConfirmation);
 
-	let element = document.getElementById('confirmation');
-	element.replaceWith(confirmationLocation);
+	confirmationLocation.classList.remove('hidden');
+	let confirmation = document.getElementById('confirmation');
+	confirmation.parentNode.removeChild(confirmation);
 
 	confirmationLocation = null;
 	confirmationSender = null;

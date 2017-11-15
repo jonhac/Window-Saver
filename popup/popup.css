@@ -8,13 +8,20 @@
 	font-style: normal;
 }
 
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 * {
 	font-family: sans-serif, icons; 
 	font-size: 100%;
 	border-style: none;
 }
-:focus {outline:none;}
-::-moz-focus-inner {border:0;}
+
+
+html,body
+{
+   min-width: 15em;
+}
 
 #create {
 	display: flex;
@@ -117,10 +124,9 @@ input {
 }
 
 #confirmation {
-	flex: 1;
+	position: absolute;
 	color: #fff;
 	background-color: red;
-	pointer-events: none;
 	text-align: center;
 }
 
@@ -153,4 +159,8 @@ input {
 #settings:hover, #version:hover, #back:hover {
 	color: #fff;
 	background-color: #177ee5;
+}
+
+.hidden {
+	visibility: hidden;
 }
