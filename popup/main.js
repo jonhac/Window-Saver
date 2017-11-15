@@ -115,9 +115,9 @@ async function listSaved() {
 function showOrRemoveWelcome() {
 	let list = document.getElementById('bookmarks');
 	if (list.childNodes.length === 0) {
-		let welcome = document.createElement('button');
+		let welcome = document.createElement('div');
 		welcome.id = 'welcome';
-		welcome.innerText = 'Welcome to Window Saver!\nHit the save button to get started.';
+		welcome.innerText = 'Welcome to Window Saver!\n Hit the save button to get started.';
 		list.appendChild(welcome);
 	} else if (list.childNodes.length === 1) {
 		if (list.firstChild.id === 'welcome') {
@@ -138,34 +138,35 @@ function buildEntryDom(bookmark) {
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
-	restoreHereButton.value = '⬆';
 	restoreHereButton.title = 'Close active and open saved window';
-	row.appendChild(restoreHereButton);
+	restoreHereButton.value = '';
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
 	overrideButton.title = 'Override saved with active window';
-	overrideButton.value = '⬇';
-	row.appendChild(overrideButton);
+	overrideButton.value = '';
 	overrideButton.addEventListener('click', handleOverride);
 
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
 	deleteButton.title = 'Delete saved window';
-	deleteButton.value = '🗙';
-	row.appendChild(deleteButton);
+	deleteButton.value = '✖';
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
 	restoreButton.type = 'button';
 	restoreButton.className = 'restore_button';
+	restoreButton.title = 'Open saved window';
 	restoreButton.value = bookmark.title;
-	restoreButton.title = 'Restore saved window';
-	row.appendChild(restoreButton);
 	restoreButton.addEventListener('click', handleRestore);
+
+	row.appendChild(deleteButton);
+	row.appendChild(overrideButton);
+	row.appendChild(restoreButton);
+	row.appendChild(restoreHereButton);
 	
 	return row;
 }
@@ -182,8 +183,8 @@ async function handleRestoreHere(e) {
 	if (confirm) {
 			let confirmed = toggleConfirmation(
 				this
-				, e.target.nextSibling.nextSibling.nextSibling
-				, 'override?');
+				, e.target.previousSibling
+				, 'close active window?');
 			if (confirmed) {
 				restoreHere();
 			}
@@ -214,7 +215,7 @@ async function handleOverride(e) {
 	if (confirm) {
 			let confirmed = toggleConfirmation(
 				this
-				, e.target.nextSibling.nextSibling
+				, e.target.nextSibling
 				, 'override?');
 			if (confirmed) {
 				override();
@@ -246,7 +247,7 @@ async function handleDelete(e) {
 	let id = e.target.parentNode.id;
 
 	if (confirm) {
-		let confirmed = toggleConfirmation(this, e.target.nextSibling, 'delete?');
+		let confirmed = toggleConfirmation(this, e.target.nextSibling.nextSibling, 'delete?');
 		if (confirmed) {
 			deleteBookmarks(id);
 		}
