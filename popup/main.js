@@ -59,9 +59,9 @@ async function listSaved() {
 function showOrRemoveWelcome() {
 	let list = document.getElementById('bookmarks');
 	if (list.childNodes.length === 0) {
-		let welcome = document.createElement('button');
+		let welcome = document.createElement('div');
 		welcome.id = 'welcome';
-		welcome.innerText = 'Welcome to Window Saver!\nHit the save button to get started.';
+		welcome.innerText = 'Welcome to Window Saver!\n Hit the save button to get started.';
 		list.appendChild(welcome);
 	} else if (list.childNodes.length === 1) {
 		if (list.firstChild.id === 'welcome') {
@@ -82,22 +82,22 @@ function buildEntryDom(bookmark) {
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
-	restoreHereButton.value = '🠉';
 	restoreHereButton.title = 'Close active and open saved window';
+	restoreHereButton.value = '';
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
 	overrideButton.title = 'Override saved with active window';
-	overrideButton.value = '🠋';
+	overrideButton.value = '';
 	overrideButton.addEventListener('click', handleOverride);
 
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
 	deleteButton.title = 'Delete saved window';
-	deleteButton.value = '🗙';
+	deleteButton.value = '✖';
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
