@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", init);
 
 let changelog = {
-	1.2: '- Brand new settings page\n'
+	'1.2': '- Brand new settings page\n'
 		+ '- Displaying changelogs\n'
 		+ '- Minor style improvements',
-	1.3: '- New option to delete stored windows after restoring them\n'
+	'1.3': '- New option to delete stored windows after restoring them\n'
 		+ '- Some style improvements',
-	1.4: '- Added a placeholder to handle restoring restricted pages like about:config',
-	1.5: '- Asks for confirmation before some actions (configurable in settings)\n'
+	'1.4': '- Added a placeholder to handle restoring restricted pages like about:config',
+	'1.5': '- Asks for confirmation before some actions (configurable in settings)\n'
 		+ '- Some style improvements\n'
-		+ '- The "delete after restore" setting will be respected for "close and restore" (  ) as well'
+		+ '- The "delete after restore" setting will be respected for "close and restore" (  ) as well',
+	'1.5.1': '- Fixed a bug where the confirmations were not displayed correctly\n'
 };
 
 async function init() {
