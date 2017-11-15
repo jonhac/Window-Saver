@@ -9,7 +9,7 @@
 }
 
 * {
-	font-family: sans-serif; 
+	font-family: sans-serif, icons; 
 	font-size: 100%;
 	border-style: none;
 }
@@ -64,17 +64,11 @@ input {
 	background-color: red;
 }
 
-.override_button {
-	font-family: icons;
-}
 .override_button:hover {
 	color: #fff;
 	background-color: red;
 }
 
-.restore_here_button {
-	font-family: icons;
-}
 .restore_here_button:hover {
 	color: #fff;
 	background-color: orange;
@@ -143,9 +137,6 @@ input {
 	margin-right: 0.5em;
 	border: 1px solid black;
 	background-color: rgba(76, 76, 76, 0.15);
-}
-#settings {
-	font-family: icons;
 }
 #settings, #version, #back {
 	border: 1px solid black;
