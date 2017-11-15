@@ -1,16 +1,21 @@
 document.addEventListener('mouseup', handleMouseUp);
 document.addEventListener('mouseleave', handleMouseLeavePopup);
 
-let grabed = null;
+let dragging = null;
 let dragStartY;
 
+function stopDragging() {
+	dragging.classList.remove('moving');
+	dragging = null;
+}
+
 function handleMouseDown(e) {
-	grabed = getValidDragNode(e.target);
-	grabed.classList.add('moving');
+	dragging = getValidDragNode(e.target);
+	dragging.classList.add('moving');
 	dragStartY = e.pageY;
 }
 function handleMouseEnter(e) {
-	if (!grabed || grabed === e.target) {
+	if (!dragging || dragging === e.target) {
 		return;
 	}
 	if (e.pageY < dragStartY) {
@@ -27,21 +32,19 @@ function handleMouseLeave(e) {
 	}
 }
 function handleMouseLeavePopup(e) {
-	if (grabed) {
-		grabed.classList.remove('moving');
-		grabed = null;
+	if (dragging) {
+		stopDragging();
 	}
 }
 async function handleMouseUp(e) {
-	if (!grabed) {
+	if (!dragging) {
 		return;
 	}
 
 	let target = getValidDragNode(e.target);
 
 	if (!target) {
-		grabed.classList.remove('moving');
-		grabed = null;
+		stopDragging();
 	} else {
 		let targetedIndex = 0;
 		
@@ -58,26 +61,23 @@ async function handleMouseUp(e) {
 			target = target.nextSibling;
 		} 
 
-		if (target !== grabed) {
+		if (target !== dragging) {
 			// move the HTML
-			let parent = grabed.parentNode;
-			parent.removeChild(grabed);
-			parent.insertBefore(grabed, target);
+			let parent = dragging.parentNode;
+			parent.removeChild(dragging);
+			parent.insertBefore(dragging, target);
 
 			// move the bookmarks
 			let settings = await browser.storage.local.get('folderId');
 			let folderId = settings.folderId;
 
 			browser.bookmarks.move(
-				grabed.id, {parentId: folderId, index: targetedIndex}
+				dragging.id, {parentId: folderId, index: targetedIndex}
 			)
 
-			// stop moving
-			grabed.classList.remove('moving');
-			grabed = null;
+			stopDragging();
 		} else {
-			grabed.classList.remove('moving');
-			grabed = null;
+			stopDragging();
 		}
 	}
 }
