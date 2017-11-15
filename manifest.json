@@ -27,6 +27,8 @@
 		"tabs",
 		"storage"
 	],
+	
+	"incognito": "spanning",
 
 	"background": {
 		"scripts": ["background.js"]

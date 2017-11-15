@@ -99,6 +99,14 @@ input {
 	padding: 5px;
 }
 
+#confirmation {
+	flex: 1;
+	color: #fff;
+	background-color: red;
+	pointer-events: none;
+	text-align: center;
+}
+
 #welcome {
 	background-color: inherit;
 	pointer-events: none;
