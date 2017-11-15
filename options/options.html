@@ -9,13 +9,38 @@
 	<body>
 		<div>
 			<label>Master Folder: </label>
-			<input type="text" id="folder_name" >
+			<input type="text" id="folderName" >
 			<button id="rename">rename</button>
 			<button id="change">change</button>
 		</div>
 		<div>
-			<label>Delete bookmarks after restoring window: </label>
-			<input type="checkbox" id="delete_after"></checkbox>
+			Ask for confirmation before
+			<div id="confirmations">
+				<div>
+					<input type="checkbox" id="confirmSavePrivate"></checkbox>
+					<label>Saving private browsing windows</label>
+				</div>
+				<div>
+					<input type="checkbox" id="confirmDelete"></checkbox>
+					<label>Deleting bookmarks ( 🗙 )</label>
+				</div>
+				<div>
+					<input type="checkbox" id="confirmOverride"></checkbox>
+					<label>Overriding bookmarks (  )</label>
+				</div>
+				<div>
+					<input type="checkbox" id="confirmCloseNonPrivate"></checkbox>
+					<label>Closing non-private browsing windows (  )</label>
+				</div>
+				<div>
+					<input type="checkbox" id="confirmClosePrivate"></checkbox>
+					<label>Closing private browsing windows (  )</label>
+				</div>
+			</div>
+		</div>
+		<div>
+			<input type="checkbox" id="deleteAfter"></checkbox>
+			<label>Always delete bookmarks after restoring windows</label>
 		</div>
 		<script src="main.js"></script>
 	</body>

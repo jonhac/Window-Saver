@@ -3,37 +3,34 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
 	loadFolderName();
 
-	browser.bookmarks.onChanged.addListener(handleBookmarkChanges);
 	browser.storage.onChanged.addListener(handleStorageChanges);
 
 	document.getElementById('rename').addEventListener('click', renameFolder);	
-	document.getElementById('folder_name').addEventListener('keydown', function(e) {
+	document.getElementById('folderName').addEventListener('keydown', function(e) {
 		if (e.key === 'Enter') {
 			renameFolder();
 		}
 	});
 	document.getElementById('change').addEventListener('click', changeFolder);	
+	browser.bookmarks.onChanged.addListener(handleBookmarkChanges);
 
-	loadAfterSettings();
-	document.getElementById('delete_after').addEventListener('click', changeDeleteAfter);
-} 
-
-// Folder------------------------
-async function loadFolderName() {
-	let settings = await browser.storage.local.get('folderId');
-	let folderId = settings.folderId;
-	let folder = await browser.bookmarks.get(folderId);
-	folder = folder[0];
-
-	document.getElementById('folder_name').value = folder.title;
-}
-
-async function handleBookmarkChanges(id, info) {
-	let settings = await browser.storage.local.get('folderId');
-	if (id == settings.folderId) {
-		loadFolderName();
+	let checkBoxes = document.querySelectorAll("input[type='checkbox']");
+	for(let box of checkBoxes) {
+		loadCheckBox(box, box.id);
+		box.addEventListener('click', acceptCheckBox);
 	}
 }
+
+async function loadCheckBox(element, settingName) {
+	let setting = await browser.storage.local.get(settingName);
+	element.checked = setting[settingName];
+}
+
+function acceptCheckBox() {
+	browser.storage.local.set({ [this.id]: this.checked });
+}
+
+// Folder------------------------
 async function handleStorageChanges(changes, areaName) {
 	if(areaName === 'local') {
 		if (changes.folderId) {
@@ -42,8 +39,25 @@ async function handleStorageChanges(changes, areaName) {
 	}
 }
 
+async function loadFolderName() {
+	let settings = await browser.storage.local.get('folderId');
+	let folderId = settings.folderId;
+	let folder = await browser.bookmarks.get(folderId);
+	folder = folder[0];
+
+	document.getElementById('folderName').value = folder.title;
+}
+
+async function handleBookmarkChanges(id, info) {
+	let settings = await browser.storage.local.get('folderId');
+	if (id == settings.folderId) {
+		loadFolderName();
+	}
+}
+
+
 async function renameFolder() {
-	let name = document.getElementById('folder_name').value;
+	let name = document.getElementById('folderName').value;
 	let settings = await browser.storage.local.get('folderId');
 
 	if(name === ''){
@@ -54,7 +68,7 @@ async function renameFolder() {
 }
 
 async function changeFolder() {
-	let name = document.getElementById('folder_name').value;
+	let name = document.getElementById('folderName').value;
 	if(name === ''){
 		loadFolderName();
 		return;
@@ -63,17 +77,4 @@ async function changeFolder() {
 	let bp = browser.extension.getBackgroundPage();
 	let newId = await bp.findOrCreateFolder(name);
 	browser.storage.local.set({ 'folderId': newId });
-}
-
-// Close after------------------------
-
-async function loadAfterSettings() {
-	let box = document.getElementById('delete_after');
-	let setting = await browser.storage.local.get('deleteAfter');
-	box.checked = setting.deleteAfter;
-}
-
-async function changeDeleteAfter() {
-	let box = document.getElementById('delete_after');
-	browser.storage.local.set({ deleteAfter: box.checked });
 }
