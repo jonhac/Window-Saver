@@ -1,3 +1,18 @@
+@font-face {
+	font-family: 'icons';
+	src:
+	  url('../icons/icon_font/icons.ttf?ws6dby') format('truetype'),
+	  url('../icons/icon_font/icons.woff?ws6dby') format('woff'),
+	  url('../icons/icon_font/icons.svg?ws6dby#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: sans-serif, icons; 
+	font-size: 100%;
+}
+
 div {
 	margin-top: 1em;
 	display: block;
