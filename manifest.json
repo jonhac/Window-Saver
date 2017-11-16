@@ -6,20 +6,10 @@
 	"description": "Saves and restores complete windows in bookmarks.",
 	"homepage_url": "https://github.com/bit-tinker/Window-Saver",
 
-	"applications":
-	{
-	    "gecko":
-		{
-			"id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
-			"strict_min_version": "55.0"
-	    }
-	},
-
 	"icons": {
-		"48": "icons/dark.svg",
-		"64": "icons/dark.svg",
-		"96": "icons/dark.svg",
-		"128": "icons/dark.svg"
+		"16": "icons/dark16.png",
+		"48": "icons/dark48.png",
+		"128": "icons/dark128.png"
 	},
 
 	"permissions": [
@@ -45,28 +35,23 @@
 		"default_title": "Window Saver",
 		"default_popup": "popup/popup.html",
 		"default_icon": {
-			"16": "icons/dark.svg",
-			"32": "icons/dark.svg",
-			"64": "icons/dark.svg",
-			"128": "icons/dark.svg"
+			"16": "icons/dark16.png",
+			"24": "icons/dark24.png",
+			"32": "icons/dark32.png"
 		},
 		"theme_icons": [
 			{
 				"size": 16,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
+				"light": "icons/light16.png",
+				"dark": "icons/dark16.png"
+			}, {
+				"size": 24,
+				"light": "icons/light24.png",
+				"dark": "icons/dark24.png"
 			}, {
 				"size": 32,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}, {
-				"size": 64,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}, {
-				"size": 128,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
+				"light": "icons/light32.png",
+				"dark": "icons/dark32.png"
 			}
 		]
 	}
