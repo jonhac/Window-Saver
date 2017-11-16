@@ -31,7 +31,10 @@
 	"incognito": "spanning",
 
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": [
+			"browser-polyfill.js"
+			, "background.js"
+		]
 	},
 	
 	"options_ui": {
