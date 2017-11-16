@@ -207,9 +207,9 @@ async function handleRestoreHere(e) {
 function saveSession(folderId) {
 	browser.tabs.query({ currentWindow: true })
 	.then(function (tabList) {
-		for (let i = tabList.length-1; i >=0; i--) {
+		for (let i = 0; i < tabList.length; i++) {
 			browser.bookmarks.create({ parentId: folderId
-				, index: i, title: tabList[i].title, url: tabList[i].url });
+				, title: tabList[i].title, url: tabList[i].url });
 		}
 	});
 }
