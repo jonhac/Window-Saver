@@ -84,7 +84,7 @@
         "message": "change"
     },
     "changeButtonTitle": {
-        "message": "Switch the folder to a different one with the new name"
+        "message": "Switch to a different folder"
     },
     "renameButton": {
         "message": "rename"
@@ -113,6 +113,10 @@
     },
     "deleteAfter": {
         "message": "Always delete bookmarks after restoring windows"
+    },
+
+    "dublicateError": {
+        "message": "Switching folders was aborted.\nMore than one folder with the chosen name is available."
     }
 
   }

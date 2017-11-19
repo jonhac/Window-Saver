@@ -75,6 +75,11 @@ async function changeFolder() {
 	}
 
 	let bp = browser.extension.getBackgroundPage();
-	let newId = await bp.findOrCreateFolder(name);
-	browser.storage.local.set({ 'folderId': newId });
+	bp.findOrCreateFolder(name)
+	.then(function(newId) {
+		browser.storage.local.set({ 'folderId': newId });
+	}).catch(function() {
+		window.alert(browser.i18n.getMessage('dublicateError'));
+		loadFolderName();
+	});
 }
