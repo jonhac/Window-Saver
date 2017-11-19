@@ -73,5 +73,46 @@
     },
     "newIn": {
         "message": "New in"
-      }
+    },
+
+    // options page
+
+    "folder" : {
+        "message": "Master Folder"
+    },
+    "changeButton": {
+        "message": "change"
+    },
+    "changeButtonTitle": {
+        "message": "Switch the folder to a different one with the new name"
+    },
+    "renameButton": {
+        "message": "rename"
+    },
+    "renameButtonTitle": {
+        "message": "Keep the current Folder, but change it's name"
+    },
+
+    "confirmHeading" : {
+        "message": "Ask for confirmation before"
+    },
+    "confirmSavePrivate": {
+        "message": "Saving private browsing windows"
+    },
+    "confirmDelete": {
+        "message": "Deleting bookmarks"
+    },
+    "confirmOverride": {
+        "message": "Overriding bookmarks"
+    },
+    "confirmCloseNonPrivate": {
+        "message": "Closing non-private browsing windows"
+    },
+    "confirmClosePrivate": {
+        "message": "Closing private browsing windows"
+    },
+    "deleteAfter": {
+        "message": "Always delete bookmarks after restoring windows"
+    }
+
   }
