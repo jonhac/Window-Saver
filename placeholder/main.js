@@ -9,7 +9,7 @@ async function init() {
 		title = url;
 	}
 	
-	document.title = 'Not really "' + title + '"';
+	document.title = browser.i18n.getMessage('placeholderTitlePrefix') + ' "' + title + '"';
 	let r = document.getElementById('restricted');
 	r.innerText = url;
 } 
