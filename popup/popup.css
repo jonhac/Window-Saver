@@ -1,9 +1,6 @@
 @font-face {
 	font-family: 'icons';
-	src:
-	  url('../icons/icon_font/icons.ttf?ws6dby') format('truetype'),
-	  url('../icons/icon_font/icons.woff?ws6dby') format('woff'),
-	  url('../icons/icon_font/icons.svg?ws6dby#icomoon') format('svg');
+	src: url('../icons/icons.woff?ws6dby') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
