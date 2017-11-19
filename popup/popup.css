@@ -12,110 +12,98 @@
 ::-moz-focus-inner {border:0;}
 
 * {
-	font-family: sans-serif, icons; 
-	font-size: 100%;
+	font-family: icons, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	color: -moz-FieldText;
+	background-color: -moz-Field;
 	border-style: none;
 }
 
 
-html,body
+body
 {
-   min-width: 15em;
+	margin: 0;
+	padding: 0;
+	min-width: 15em;
 }
 
-#create {
+.row {
 	display: flex;
-	border: thin solid black;
-	margin-bottom: 5px;
+	text-align: center;
+	margin: 5px;
+}
+.indented {
+	margin-right: 5px;
+	margin-left: 2em;
+	text-indent: -2em;
+	padding-left: 2.5em;
+	width: calc(100% - 4.5em -5px);
+	border-left: thin solid currentColor;
+	text-align: start;
+}
+.session {
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+.session:hover {
+	box-shadow: 0px 0px 5px currentColor;
+}
+input {
+	cursor: inherit;
+	margin: 1px;
+	vertical-align: middle; 
+	box-shadow: 0px 0px 1px -moz-FieldText;
+}
+input[type=button]:hover {
+	color: -moz-MenuHoverText;
+	background-color: -moz-MenuHover;
+	box-shadow: 0px 0px 5px -moz-FieldText;
 }
 #name_input {
 	flex: 1;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
-	background-color: rgba(76, 76, 76, 0.3);
-}
-#save {
-	border-left: thin solid black;
-	background-color: rgba(76, 76, 76, 0.15);
-}
-#save:hover {
-	color: #fff;
-	background-color: #177ee5;
+	min-width: 10em;
 }
 
-input {
-	background-color: inherit;
-	cursor: inherit;
-}
-
-.session {
+#bookmarks {
+	margin-top: 5px;
+	margin-bottom: 5px;
 	width: 100%;
-	display: flex;
-	border: thin solid transparent;
-}
-.session:hover {
-	border-color: black;
-	background-color: rgba(76, 76, 76, 0.15);
 }
 
 .restore_button {
 	flex: 1;
 }
-.restore_button:hover {
-	color: #fff;
-	background-color: #177ee5;
-}
 
-.delete_button:hover {
-	color: #fff;
+.delete_button[type=button]:hover {
+	color: white;
 	background-color: red;
 }
 
-.override_button:hover {
-	color: #fff;
+.override_button[type=button]:hover {
+	color: white;
 	background-color: red;
-}
-
-.restore_here_button:hover {
-	color: #fff;
-	background-color: orange;
 }
 
 .moving {
-	border-color: black;
-	background-color: rgba(179, 179, 179, .3);
+	border-color: currentColor;
 	cursor: grabbing;
 }
 .drop_over:hover {
 	background-color: inherit;
-	border-top-color:#177ee5;
-	border-bottom-color: transparent;
-	border-left-color: transparent;
-	border-right-color: transparent;
+	box-shadow: 0px -1px 0px -moz-MenuHover;
+	border-color: transparent;
 	cursor: grabbing;
 }
 .drop_under:hover {
 	background-color: inherit;
-	border-top-color: transparent;
-	border-bottom-color: #177ee5;
-	border-left-color: transparent;
-	border-right-color: transparent;
+	box-shadow: 0px -1px 0px -moz-MenuHover;
+	border-color: transparent;
 	cursor: grabbing;
 }
-.drop_over > .restore_button:hover
-, .drop_under > .restore_button:hover
-, .moving > .restore_button:hover
-, .drop_over > .delete_button:hover
-, .drop_under > .delete_button:hover
-, .moving > .delete_button:hover
-, .drop_over > .override_button:hover
-, .drop_under > .override_button:hover
-, .moving > .override_button:hover
-, .drop_over > .restore_here_button:hover
-, .drop_under > .restore_here_button:hover
-, .moving > .restore_here_button:hover {
+.drop_over > input[type=button]:hover
+, .drop_under > input[type=button]:hover {
 	color: inherit;
-	background-color: inherit;
+	background-color: initial;
+	box-shadow: 0px 0px 1px -moz-FieldText;
 }
 
 #warning {
@@ -125,7 +113,7 @@ input {
 
 #confirmation {
 	position: absolute;
-	color: #fff;
+	color: white;
 	background-color: red;
 	text-align: center;
 }
@@ -135,32 +123,12 @@ input {
 	pointer-events: none;
 	text-align: left;
 }
-
-.footer {
-	margin-top: 5px;
-	height: 1.5em;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	background-color: rgba(76, 76, 76, 0.15);
-}
-#name {
+.spacer {
 	flex: 1;
 	white-space: pre;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-	border: 1px solid black;
-	background-color: rgba(76, 76, 76, 0.15);
-}
-#settings, #version, #back {
-	border: 1px solid black;
-	background-color: rgba(76, 76, 76, 0.15);
-}
-#settings:hover, #version:hover, #back:hover {
-	color: #fff;
-	background-color: #177ee5;
 }
 
 .hidden {
 	visibility: hidden;
 }
+

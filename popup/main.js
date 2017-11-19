@@ -20,7 +20,7 @@ displayVersion();
 
 async function displayVersion() {
 	let info = await browser.management.getSelf();
-	document.getElementById('version').innerText = info.version;
+	document.getElementById('version').value = info.version;
 };
 
 
@@ -39,7 +39,9 @@ function toggleConfirmation(sender, location, message) {
 		element.innerText = message;
 		element.style.width = location.offsetWidth + 'px';
 		element.style.height = location.offsetHeight + 'px';
+		element.style['line-height'] = location.offsetHeight + 'px';
 		element.style.left = location.offsetLeft + 'px';
+		element.style.top = location.offsetTop + 'px';
 
 		confirmationLocation = location;
 		confirmationLocation.classList.add('hidden');
@@ -134,7 +136,7 @@ function showOrRemoveWelcome() {
 function buildEntryDom(bookmark) {
 	let row = document.createElement('div');
 	row.id = bookmark.id;
-	row.className = 'session';
+	row.className = 'row session';
 	// mouse event handlers are in drag_and_drop.js
 	row.addEventListener('mousedown', handleMouseDown);
 	row.addEventListener('mouseenter', handleMouseEnter);

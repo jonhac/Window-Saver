@@ -5,18 +5,17 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="popup.css" />
-		<link rel="stylesheet" href="changelog.css" />
 	</head>
 	<body>
-		<div class="footer">
-			<button id = "back" title="Go back">🠈</button>
-			<span id = "name">Window Saver</span>
+		<div class="row">
+			<input type="button" id = "back" title="Go back" value="🠈"/>
+			<span class="spacer">Window Saver</span>
+			<input id="bug" type="button" title="github.com" value="Report a bug"/>
 		</div>
-		<div id = "change_header"></div>
-		<div id = "changelog"></div>
-		<div class="footer">
-			<button id = "more" title="addons.mozilla.org">Old Versions</button>
-			<button id = "bug" title="github.com">Report a bug</button>
+		<div id="change_header" class="row"></div>
+		<div id="changelog"></div>
+		<div class="row">
+			<input id="more" type="button" title="addons.mozilla.org" value="Old Versions"/>
 		</div>
 		<script src="changelog.js"></script>
 	</body>
