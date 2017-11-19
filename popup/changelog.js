@@ -10,7 +10,8 @@ let changelog = {
 	'1.5': '- Asks for confirmation before some actions (configurable in settings)\n'
 		+ '- Some style improvements\n'
 		+ '- The "delete after restore" setting will be respected for "close and restore" (  ) as well',
-	'1.5.1': '- Fixed a bug where the confirmations were not displayed correctly\n'
+	'1.5.1': '- Fixed a bug where the confirmations were not displayed correctly\n',
+	'1.6': ''
 };
 
 async function init() {
@@ -32,7 +33,7 @@ async function init() {
 	let info = await browser.management.getSelf();
 	let version = info.version;
 
-	document.getElementById('change_header').innerText = 'new in ' + version;
+	document.getElementById('change_header').innerText = 'New in ' + version + ':';
 	document.getElementById('changelog').innerText = changelog[version];
 }
 
