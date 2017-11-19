@@ -95,7 +95,7 @@ input[type=button]:hover {
 }
 .drop_under:hover {
 	background-color: inherit;
-	box-shadow: 0px -1px 0px -moz-MenuHover;
+	box-shadow: 0px 1px 0px -moz-MenuHover;
 	border-color: transparent;
 	cursor: grabbing;
 }
