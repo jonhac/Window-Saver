@@ -25,7 +25,7 @@ async function init() {
 		window.location.href = browser.extension.getURL('popup/popup.html');
 	});
 	document.getElementById('more').addEventListener('click', function() {
-		browser.tabs.create({ url: 'https://addons.mozilla.org/en-US/firefox/addon/window-saver/versions/' });
+		browser.tabs.create({ url: browser.i18n.getMessage('storeUrl') });
 		window.close();
 	});
 	document.getElementById('bug').addEventListener('click', function() {
@@ -36,7 +36,7 @@ async function init() {
 	let info = await browser.management.getSelf();
 	let version = info.version;
 
-	document.getElementById('change_header').innerText = 'New in ' + version + ':';
+	document.getElementById('change_header').innerText = browser.i18n.getMessage('newIn') + version + ':';
 	let log = changelog[version];
 	for (let change of log) {
 		let element = document.createElement('div');

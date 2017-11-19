@@ -1,0 +1,77 @@
+{
+    // manifest
+
+    "extensionDescription": {
+      "message": "Saves and restores complete windows in bookmarks.",
+      "description": "Description of the extension."
+    },
+
+    // main popup
+
+    "namePlaceholder": {
+        "message": "Window Name"
+    },
+
+    "saveButton": {
+        "message": "save"
+    },
+    "saveButtonTitle": {
+        "message": "Save Active Window"
+    },
+    "settingsButtonTitle": {
+        "message": "Open Settings"
+    },
+    "versionButtonTitle": {
+        "message": "About"
+    },
+
+    "restoreButtonTitle": {
+        "message": "Open saved window"
+    },
+    "restoreHereButtonTitle": {
+        "message": "Close active and open saved window"
+    },
+    "deleteButtonTitle": {
+        "message": "Delete saved window"
+    },
+    "overrideButtonTitle": {
+        "message": "Override saved with active window"
+    },
+
+    "savePrivatePrompt": {
+        "message": "save private window?"
+    },
+    "restoreHerePrompt": {
+        "message": "close active window?"
+    },
+    "overridePrompt": {
+        "message": "override?"
+    },
+    "deletePrompt": {
+        "message": "delete?"
+    },
+
+    "welcomeMessage": {
+        "message": "Welcome to Window Saver!\n Hit the save button to get started."
+    },
+
+    // version|about popup
+
+    "goBack": {
+        "message": "Go Back",
+        "description": "Tooltip for button"
+    },
+    "reportButton": {
+        "message": "Report a Bug"
+    },
+    "oldVersions": {
+        "message": "Old Versions",
+        "description": "Button text"
+    },
+    "storeUrl": {
+        "message": "https://addons.mozilla.org/en-US/firefox/addon/window-saver/versions/"
+    },
+    "newIn": {
+        "message": "New in"
+      }
+  }

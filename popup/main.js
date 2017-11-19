@@ -1,22 +1,26 @@
 let settings = browser.storage.local.get(['folderId', 'confirmSavePrivate'
 	, 'confirmDelete', 'confirmOverride', 'confirmCloseNonPrivate'
-	, 'confirmClosePrivate', 'deleteAfter']);;
+	, 'confirmClosePrivate', 'deleteAfter']);
 
-window.addEventListener('load', listSaved);
-document.getElementById('save').addEventListener('click', handleSave);
-document.getElementById('name_input').addEventListener('keydown', function(e) {
-	if (e.key === 'Enter') {
-		handleSave();
-	}
-});
-document.getElementById('settings').addEventListener('click', function(e) {
-	browser.runtime.openOptionsPage();
-	window.close();
-});
-document.getElementById('version').addEventListener('click', function() {
-	window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
-});
-displayVersion();
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+	window.addEventListener('load', listSaved);
+	document.getElementById('save').addEventListener('click', handleSave);
+	document.getElementById('name_input').addEventListener('keydown', function(e) {
+		if (e.key === 'Enter') {
+			handleSave();
+		}
+	});
+	document.getElementById('settings').addEventListener('click', function(e) {
+		browser.runtime.openOptionsPage();
+		window.close();
+	});
+	document.getElementById('version').addEventListener('click', function() {
+		window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
+	});
+	displayVersion();
+}	
 
 async function displayVersion() {
 	let info = await browser.management.getSelf();
@@ -36,7 +40,7 @@ function toggleConfirmation(sender, location, message) {
 
 		let element = document.createElement('div');
 		element.id = 'confirmation';
-		element.innerText = message;
+		element.innerText = browser.i18n.getMessage(message);
 		element.style.width = location.offsetWidth + 'px';
 		element.style.height = location.offsetHeight + 'px';
 		element.style['line-height'] = location.offsetHeight + 'px';
@@ -74,7 +78,7 @@ async function handleSave() {
 			let confirmed = toggleConfirmation(
 				document.getElementById('save')
 				, document.getElementById('name_input')
-				, 'save private window?');
+				, 'savePrivatePrompt');
 			if (confirmed) {
 				save();
 			}
@@ -124,7 +128,7 @@ function showOrRemoveWelcome() {
 	if (list.childNodes.length === 0) {
 		let welcome = document.createElement('div');
 		welcome.id = 'welcome';
-		welcome.innerText = 'Welcome to Window Saver!\n Hit the save button to get started.';
+		welcome.innerText = browser.i18n.getMessage('welcomeMessage');
 		list.appendChild(welcome);
 	} else if (list.childNodes.length === 1) {
 		if (list.firstChild.id === 'welcome') {
@@ -145,28 +149,28 @@ function buildEntryDom(bookmark) {
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
-	restoreHereButton.title = 'Close active and open saved window';
+	restoreHereButton.title = browser.i18n.getMessage('restoreHereButtonTitle');
 	restoreHereButton.value = '';
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
-	overrideButton.title = 'Override saved with active window';
+	overrideButton.title = browser.i18n.getMessage('overrideButtonTitle');
 	overrideButton.value = '';
 	overrideButton.addEventListener('click', handleOverride);
 
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
-	deleteButton.title = 'Delete saved window';
+	deleteButton.title = browser.i18n.getMessage('deleteButtonTitle');
 	deleteButton.value = '✖';
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
 	restoreButton.type = 'button';
 	restoreButton.className = 'restore_button';
-	restoreButton.title = 'Open saved window';
+	restoreButton.title = browser.i18n.getMessage('restoreButtonTitle');
 	restoreButton.value = bookmark.title;
 	restoreButton.addEventListener('click', handleRestore);
 
@@ -191,7 +195,7 @@ async function handleRestoreHere(e) {
 			let confirmed = toggleConfirmation(
 				this
 				, e.target.previousSibling
-				, 'close active window?');
+				, 'restoreHerePrompt');
 			if (confirmed) {
 				restoreHere();
 			}
@@ -223,7 +227,7 @@ async function handleOverride(e) {
 			let confirmed = toggleConfirmation(
 				this
 				, e.target.nextSibling
-				, 'override?');
+				, 'overridePrompt');
 			if (confirmed) {
 				override();
 			}
@@ -254,7 +258,7 @@ async function handleDelete(e) {
 	let id = e.target.parentNode.id;
 
 	if (confirm) {
-		let confirmed = toggleConfirmation(this, e.target.nextSibling.nextSibling, 'delete?');
+		let confirmed = toggleConfirmation(this, e.target.nextSibling.nextSibling, 'deletePrompt');
 		if (confirmed) {
 			deleteBookmarks(id);
 		}

@@ -1,9 +1,11 @@
 {
 	"manifest_version": 2,
-	"name": "Window Saver",
-	"version": "1.6",
 
-	"description": "Saves and restores complete windows in bookmarks.",
+	"version": "1.6",
+	"default_locale": "en",
+	
+	"name": "Window Saver",
+	"description": "__MSG_extensionDescription__",
 	"homepage_url": "https://github.com/bit-tinker/Window-Saver",
 
 	"applications":
