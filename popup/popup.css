@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'icons';
-	src: url('../icons/icons.woff?ws6dby') format('woff');
+	src: url('../icons/icons.woff??3lk1bk') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -14,7 +14,7 @@ body
 	padding: 0;
 	min-width: 15em;
 
-	font-family: icons, sans-serif;
+	font-family: sans-serif, icons;
 	color: -moz-FieldText;
 	background-color: -moz-Field;
 	border-style: none;
@@ -46,11 +46,12 @@ input {
 	font-family: inherit;
 	color: inherit;
 	background-color: inherit;
-	border-style: none;
-
+	
+	text-align: start;
 	cursor: inherit;
 	margin: 1px;
 	vertical-align: middle; 
+	border-style: none;
 	box-shadow: 0px 0px 1px -moz-FieldText;
 }
 input[type=button]:hover {

@@ -164,7 +164,7 @@ function buildEntryDom(bookmark) {
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
 	deleteButton.title = browser.i18n.getMessage('deleteButtonTitle');
-	deleteButton.value = '✖';
+	deleteButton.value = '';
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
