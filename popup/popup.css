@@ -23,6 +23,7 @@ body
 .row {
 	display: flex;
 	text-align: center;
+	line-height: 1.4em;
 	margin: 5px;
 }
 .indented {
@@ -31,7 +32,7 @@ body
 	text-indent: -2em;
 	padding-left: 2.5em;
 	width: calc(100% - 4.5em -5px);
-	border-left: thin solid currentColor;
+	border-left: thin solid  -moz-FieldText;
 	text-align: start;
 }
 .session {
@@ -39,7 +40,7 @@ body
 	margin-bottom: 1px;
 }
 .session:hover {
-	box-shadow: 0px 0px 5px currentColor;
+	box-shadow: 0px 0px 5px  -moz-FieldText;
 }
 input {
 	font-size: inherit;
@@ -48,6 +49,7 @@ input {
 	background-color: inherit;
 	
 	text-align: start;
+	line-height: inherit;
 	cursor: inherit;
 	margin: 1px;
 	vertical-align: middle; 
