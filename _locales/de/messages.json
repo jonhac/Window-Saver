@@ -72,7 +72,7 @@
         "message": "Neu in"
     },
     "changelog": {
-        "message": "Style improvements\nTest"
+        "message": "Neue Einstellung um \"kritische\" Tabs zu beim öffnen zu ignorieren anstatt den Platzhalter anzuzeigen\nDeutsche Übersetzung\nDesign Änderungen"
     },
 
     // options page
@@ -110,6 +110,9 @@
     },
     "confirmClosePrivate": {
         "message": "Private Fenster zu schließen"
+    },
+    "showPlaceholder": {
+        "message": "Zeige Platzhalter wenn  \"kritische\" Tabs widerhergestellt werden sollen (anstatt diese zu ignorieren)"
     },
     "deleteAfter": {
         "message": "Lesezeichen nach dem Öffnen löschen"

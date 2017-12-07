@@ -11,6 +11,7 @@ function initDefaultSettings() {
 	initSetting('confirmOverride', true);
 	initSetting('confirmCloseNonPrivate', false);
 	initSetting('confirmClosePrivate', false);
+	initSetting('showPlaceholder', true);
 
 	async function initSetting(name, value) {
 		let setting = await browser.storage.local.get(name);

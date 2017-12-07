@@ -75,7 +75,7 @@
         "message": "New in"
     },
     "changelog": {
-        "message": "Style improvements\nTest"
+        "message": "New setting to ignore \"restricted\" Tabs instead of opening the placeholder\nGerman translation\nStyle improvements"
     },
 
     // options page
@@ -113,6 +113,9 @@
     },
     "confirmClosePrivate": {
         "message": "Closing private browsing windows"
+    },
+    "showPlaceholder": {
+        "message": "Show placeholer when restoring restricted pages (instead of ignoring them)"
     },
     "deleteAfter": {
         "message": "Always delete bookmarks after restoring windows"

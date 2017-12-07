@@ -1,6 +1,6 @@
 let settings = browser.storage.local.get(['folderId', 'confirmSavePrivate'
 	, 'confirmDelete', 'confirmOverride', 'confirmCloseNonPrivate'
-	, 'confirmClosePrivate', 'deleteAfter']);
+	, 'confirmClosePrivate', 'deleteAfter', 'showPlaceholder']);
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -267,6 +267,7 @@ async function handleDelete(e) {
 	}
 }
 async function handleRestore(e) {
+	let showPlaceholder = (await settings).showPlaceholder;
 	let id = e.target.parentNode.id;
 	let tabs = await browser.bookmarks.getChildren(id);
 
@@ -280,16 +281,18 @@ async function handleRestore(e) {
 		|| tab.url.indexOf('data:') === 0 	
 		|| tab.url.indexOf('file:') === 0 
 		|| (tab.url.indexOf('about:') === 0 && tab.url.indexOf('about:blank') !== 0)) {
-			addresses.push(browser.extension.getURL(
-				'placeholder/placeholder.html?r=' + tab.url + '&t=' + tab.title));
+			if (showPlaceholder) {
+				addresses.push(browser.extension.getURL(
+					'placeholder/placeholder.html?r=' + tab.url + '&t=' + tab.title));
+			}
 		} else {
 			addresses.push(tab.url);
 		}
 	}
 	browser.windows.create({ url: addresses});
 
-	let settings = await browser.storage.local.get('deleteAfter');
-	if (settings.deleteAfter) {
+	let deleteAfter = (await settings).deleteAfter;
+	if (deleteAfter) {
 		deleteBookmarks(id);
 	}
 }
