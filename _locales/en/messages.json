@@ -74,6 +74,9 @@
     "newIn": {
         "message": "New in"
     },
+    "changelog": {
+        "message": "Style improvements\nTest"
+    },
 
     // options page
 

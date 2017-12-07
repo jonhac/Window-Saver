@@ -1,22 +1,5 @@
 document.addEventListener("DOMContentLoaded", init);
 
-let changelog = {
-	'1.2': ['- Brand new settings page'
-		, '- Displaying changelogs\n'
-		, '- Minor style improvements'
-	]
-	, '1.3': ['- New option to delete stored windows after restoring them'
-		, '- Some style improvements'
-	]
-	, '1.4': ['- Added a placeholder to handle restoring restricted pages like about:config']
-	, '1.5': ['- Asks for confirmation before some actions (configurable in settings)\n'
-		, '- Some style improvements\n'
-		, '- The "delete after restore" setting will be respected for "close and restore" (  ) as well',
-	]
-	, '1.5.1': ['- Fixed a bug where the confirmations were not displayed correctly']
-	, '1.6': ['Style improvements']
-};
-
 async function init() {
 	let params = new URLSearchParams(window.location.search);
 	document.body.style.width = params.get('w') + 'px';
@@ -37,7 +20,7 @@ async function init() {
 	let version = info.version;
 
 	document.getElementById('change_header').innerText = browser.i18n.getMessage('newIn') + version + ':';
-	let log = changelog[version];
+	let log = browser.i18n.getMessage('changelog').split("\n");
 	for (let change of log) {
 		let element = document.createElement('div');
 		element.className = 'indented';
