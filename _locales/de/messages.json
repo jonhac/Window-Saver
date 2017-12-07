@@ -1,0 +1,155 @@
+{
+    // manifest
+
+    "extensionDescription": {
+      "message": "Komplette Fenster als Lesezeichen speichern und wiederherstellen"
+    },
+
+    // main popup
+
+    "namePlaceholder": {
+        "message": "Fenster Name"
+    },
+
+    "saveButton": {
+        "message": "speichern"
+    },
+    "saveButtonTitle": {
+        "message": "Speichert das aktive Fenster"
+    },
+    "settingsButtonTitle": {
+        "message": "Einstellungen"
+    },
+    "versionButtonTitle": {
+        "message": "Über"
+    },
+
+    "restoreButtonTitle": {
+        "message": "Gespeichertes Fenster öffnen"
+    },
+    "restoreHereButtonTitle": {
+        "message": "Aktives Fenster schließen und gespeichertes öffnen"
+    },
+    "deleteButtonTitle": {
+        "message": "Gespeichertes Fenster löschen"
+    },
+    "overrideButtonTitle": {
+        "message": "Gespeichertes Fenster überschreiben"
+    },
+
+    "savePrivatePrompt": {
+        "message": "Privates Fenster"
+    },
+    "restoreHerePrompt": {
+        "message": "Schließen"
+    },
+    "overridePrompt": {
+        "message": "Überschreiben"
+    },
+    "deletePrompt": {
+        "message": "Löschen"
+    },
+
+    "welcomeMessage": {
+        "message": "Wilkommen zu Window Saver!\nMit speichern geht's los."
+    },
+
+    // version|about popup
+
+    "goBack": {
+        "message": "Zurück"
+    },
+    "reportButton": {
+        "message": "Fehler melden"
+    },
+    "oldVersions": {
+        "message": "Alte Versionen"
+    },
+    "storeUrl": {
+        "message": "https://addons.mozilla.org/de/firefox/addon/window-saver/versions/"
+    },
+    "newIn": {
+        "message": "Neu in"
+    },
+    "changelog": {
+        "message": "Style improvements\nTest"
+    },
+
+    // options page
+
+    "folder" : {
+        "message": "Überordner"
+    },
+    "changeButton": {
+        "message": "ändern"
+    },
+    "changeButtonTitle": {
+        "message": "Zu einem anderen Ordner wechseln"
+    },
+    "renameButton": {
+        "message": "umbenennen"
+    },
+    "renameButtonTitle": {
+        "message": "Den Ordner beibehalten und umbenennen"
+    },
+
+    "confirmHeading" : {
+        "message": "Bestätigung ist nötig um"
+    },
+    "confirmSavePrivate": {
+        "message": "Private Fenster zu speichern"
+    },
+    "confirmDelete": {
+        "message": "Gespeicherte Fenster zu löschen"
+    },
+    "confirmOverride": {
+        "message": "Gespeicherte Fenster zu überschreiben"
+    },
+    "confirmCloseNonPrivate": {
+        "message": "Normale Fenster zu schließen"
+    },
+    "confirmClosePrivate": {
+        "message": "Private Fenster zu schließen"
+    },
+    "deleteAfter": {
+        "message": "Lesezeichen nach dem Öffnen löschen"
+    },
+
+    "dublicateError": {
+        "message": "Der Wechsel wurde abgebrochen.\nEs wurden mehrere Ordner mit dem gewünschten Namen gefunden."
+    },
+
+    // placeholder
+
+    "placeholderFor": {
+        "message": "Dies is ein Platzhalter für die Seite" 
+    },
+    "placeholderExplanationCaption": {
+        "message": "Was? Wie? Warum?" 
+    },
+    "placeholderExplanation1": {
+        "message": "Window Saver hat ein Fenster mit einer \"kritischen\" Seite widerhergestellt. Firefox verbietet es jedoch allen Erweiterungen solche zu manipulieren."  
+    },
+    "placeholderExplanation2": {
+        "message": "Window Saver ist es daher zwar möglich \"kritischen\" Seiten als Leesezeichen zu speichern, aber nicht sie zu öffnen. Ein Platzhlater ist alles was Firefox erlaubt. Um auf die ursprünglich gespeicherte Seite zu gelangen kopieren Sie einfach die oben angegebene Adresse in die Adressleiste."
+    },
+    "placeholderTip": {
+        "message": "Es ist Ihnen auch möglich die in Firefox eingebauten Leesezeichen Optionen zu verwenden um gespeicherte Fenster zu öffnen. Dies benötigt ein paar Schritte mehr, ermöglicht es aber \"kritische\" Tabs widerherzustellen und kann daher sinnvoll sein, wenn sich viele davon in einem Fenster befinden. Die einfachste Vorgehensweise dazu ist folgende:"
+    },
+    "placeholderTip1": {
+        "message": "Ein neues Firefox Fenster öffnen (Strg+N)" 
+    },
+    "placeholderTip2": {
+        "message": "Die Leesezeichen Sidebar öffnen (Strg+B)" 
+    },
+    "placeholderTip3": {
+        "message": "Den Überordner mit einem Mausklick ausklappen (standard: \"Window Saver\" in \"Weitere Leesezeichen\")" 
+    },
+    "placeholderTip4": {
+        "message": "Rechtsklick auf das gewünschte Fenster und \"Alle in Tabs öffnen\" auswählen." 
+    },
+
+    "placeholderTitlePrefix": {
+        "message": "Nicht wirklich" 
+    }
+  }
