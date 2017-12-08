@@ -23,7 +23,7 @@ body
 .row {
 	display: flex;
 	text-align: center;
-	line-height: 1.4em;
+	line-height: 1.5em;
 	margin: 5px;
 }
 .indented {
@@ -89,11 +89,11 @@ input[type=button]:hover {
 	cursor: grabbing;
 }
 .drop_over:hover {
-	box-shadow: 0px -1px 0px -moz-MenuHover;
+	box-shadow: 0 -5px 5px -5px -moz-FieldText;
 	cursor: grabbing;
 }
 .drop_under:hover {
-	box-shadow: 0px 1px 0px -moz-MenuHover;
+	box-shadow: 0 5px 5px -5px -moz-FieldText;
 	cursor: grabbing;
 }
 .drop_over > input[type=button]:hover
