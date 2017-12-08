@@ -8,40 +8,45 @@
 	</head>
 	<body>
 		<div>
-			<label>Master Folder: </label>
+			<label>__MSG_folder__: </label>
 			<input type="text" id="folderName" >
-			<button id="rename">rename</button>
-			<button id="change">change</button>
+			<button id="rename" title="__MSG_renameButtonTitle__">__MSG_renameButton__</button>
+			<button id="change" title="__MSG_changeButtonTitle__">__MSG_changeButton__</button>
 		</div>
 		<div>
-			Ask for confirmation before
+			__MSG_confirmHeading__
 			<div id="confirmations">
 				<div>
-					<input type="checkbox" id="confirmSavePrivate"></checkbox>
-					<label>Saving private browsing windows</label>
+					<input type="checkbox" id="confirmSavePrivate"></input>
+					<label>__MSG_confirmSavePrivate__</label>
 				</div>
 				<div>
-					<input type="checkbox" id="confirmDelete"></checkbox>
-					<label>Deleting bookmarks ( 🗙 )</label>
+					<input type="checkbox" id="confirmDelete"></input>
+					<label>__MSG_confirmDelete__ (  )</label>
 				</div>
 				<div>
-					<input type="checkbox" id="confirmOverride"></checkbox>
-					<label>Overriding bookmarks (  )</label>
+					<input type="checkbox" id="confirmOverride"></input>
+					<label>__MSG_confirmOverride__ (  )</label>
 				</div>
 				<div>
-					<input type="checkbox" id="confirmCloseNonPrivate"></checkbox>
-					<label>Closing non-private browsing windows (  )</label>
+					<input type="checkbox" id="confirmCloseNonPrivate"></input>
+					<label>__MSG_confirmCloseNonPrivate__ (  )</label>
 				</div>
 				<div>
-					<input type="checkbox" id="confirmClosePrivate"></checkbox>
-					<label>Closing private browsing windows (  )</label>
+					<input type="checkbox" id="confirmClosePrivate"></input>
+					<label>__MSG_confirmClosePrivate__ (  )</label>
 				</div>
 			</div>
 		</div>
 		<div>
-			<input type="checkbox" id="deleteAfter"></checkbox>
-			<label>Always delete bookmarks after restoring windows</label>
+			<input type="checkbox" id="showPlaceholder"></input>
+			<label>__MSG_showPlaceholder__</label>
 		</div>
+		<div>
+			<input type="checkbox" id="deleteAfter"></input>
+			<label>__MSG_deleteAfter__</label>
+		</div>
+		<script src="../insert_translations.js"></script>
 		<script src="main.js"></script>
 	</body>
 

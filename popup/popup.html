@@ -7,18 +7,19 @@
 </head>
 
 <body>
-	<div id="create">
-		<input id="name_input" type=text placeholder="Window Name" />
-		<input id="save" type="button" value="save" title="Save active window"/>
+	<div class="row">
+		<input id="name_input" type=text placeholder="__MSG_namePlaceholder__" />
+		<input id="save" type="button" value="__MSG_saveButton__" title="__MSG_saveButtonTitle__"/>
 	</div>
 	<div id="bookmarks"></div>
-	<div class="footer">
-		<button id = "settings" title="Open settings"></button>
-		<span id = "name">Window Saver</span>
-		<button id="version" title="Whats new?"></span>
+	<div class="row">
+		<input type="button" id="settings" title="__MSG_settingsButtonTitle__" value="" />
+		<span class="spacer">Window Saver</span>
+		<input type="button" id="version" title="__MSG_versionButtonTitle__"/>
 	</div>
-	<script src="main.js"></script>
+	<script src="../insert_translations.js"></script>
 	<script src="drag_and_drop.js"></script>
+	<script src="main.js"></script>
 </body>
 
 </html>

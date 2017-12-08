@@ -11,6 +11,7 @@ function initDefaultSettings() {
 	initSetting('confirmOverride', true);
 	initSetting('confirmCloseNonPrivate', false);
 	initSetting('confirmClosePrivate', false);
+	initSetting('showPlaceholder', true);
 
 	async function initSetting(name, value) {
 		let setting = await browser.storage.local.get(name);
@@ -43,7 +44,6 @@ async function findOrCreateFolder(name) {
 			if ('undefined' == typeof result.url && 'unfiled_____' === result.parentId) {
 				if (candidate) {
 					// more than one valid candidate
-					alert('error');
 					throw new Error('more than one folder with name: ' + name);
 				} else {
 					candidate = result;

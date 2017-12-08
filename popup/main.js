@@ -1,26 +1,30 @@
 let settings = browser.storage.local.get(['folderId', 'confirmSavePrivate'
 	, 'confirmDelete', 'confirmOverride', 'confirmCloseNonPrivate'
-	, 'confirmClosePrivate', 'deleteAfter']);;
+	, 'confirmClosePrivate', 'deleteAfter', 'showPlaceholder']);
 
-window.addEventListener('load', listSaved);
-document.getElementById('save').addEventListener('click', handleSave);
-document.getElementById('name_input').addEventListener('keydown', function(e) {
-	if (e.key === 'Enter') {
-		handleSave();
-	}
-});
-document.getElementById('settings').addEventListener('click', function(e) {
-	browser.runtime.openOptionsPage();
-	window.close();
-});
-document.getElementById('version').addEventListener('click', function() {
-	window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
-});
-displayVersion();
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+	window.addEventListener('load', listSaved);
+	document.getElementById('save').addEventListener('click', handleSave);
+	document.getElementById('name_input').addEventListener('keydown', function(e) {
+		if (e.key === 'Enter') {
+			handleSave();
+		}
+	});
+	document.getElementById('settings').addEventListener('click', function(e) {
+		browser.runtime.openOptionsPage();
+		window.close();
+	});
+	document.getElementById('version').addEventListener('click', function() {
+		window.location.href = browser.extension.getURL('popup/changelog.html?w=' + document.body.clientWidth);
+	});
+	displayVersion();
+}	
 
 async function displayVersion() {
 	let info = await browser.management.getSelf();
-	document.getElementById('version').innerText = info.version;
+	document.getElementById('version').value = info.version;
 };
 
 
@@ -36,10 +40,16 @@ function toggleConfirmation(sender, location, message) {
 
 		let element = document.createElement('div');
 		element.id = 'confirmation';
-		element.innerText = message;
+		element.innerText = browser.i18n.getMessage(message);
+		element.style.width = location.offsetWidth + 'px';
+		element.style.height = location.offsetHeight + 'px';
+		element.style['line-height'] = location.offsetHeight + 'px';
+		element.style.left = location.offsetLeft + 'px';
+		element.style.top = location.offsetTop + 'px';
 
 		confirmationLocation = location;
-		confirmationLocation.replaceWith(element);
+		confirmationLocation.classList.add('hidden');
+		confirmationLocation.parentNode.insertBefore(element, confirmationLocation);
 
 		confirmationSender.addEventListener('mouseleave', cancelConfirmation);
 
@@ -50,8 +60,9 @@ function toggleConfirmation(sender, location, message) {
 function cancelConfirmation() {
 	confirmationSender.removeEventListener('mouseleave', cancelConfirmation);
 
-	let element = document.getElementById('confirmation');
-	element.replaceWith(confirmationLocation);
+	confirmationLocation.classList.remove('hidden');
+	let confirmation = document.getElementById('confirmation');
+	confirmation.parentNode.removeChild(confirmation);
 
 	confirmationLocation = null;
 	confirmationSender = null;
@@ -67,7 +78,7 @@ async function handleSave() {
 			let confirmed = toggleConfirmation(
 				document.getElementById('save')
 				, document.getElementById('name_input')
-				, 'save private window?');
+				, 'savePrivatePrompt');
 			if (confirmed) {
 				save();
 			}
@@ -117,7 +128,7 @@ function showOrRemoveWelcome() {
 	if (list.childNodes.length === 0) {
 		let welcome = document.createElement('div');
 		welcome.id = 'welcome';
-		welcome.innerText = 'Welcome to Window Saver!\n Hit the save button to get started.';
+		welcome.innerText = browser.i18n.getMessage('welcomeMessage');
 		list.appendChild(welcome);
 	} else if (list.childNodes.length === 1) {
 		if (list.firstChild.id === 'welcome') {
@@ -129,7 +140,7 @@ function showOrRemoveWelcome() {
 function buildEntryDom(bookmark) {
 	let row = document.createElement('div');
 	row.id = bookmark.id;
-	row.className = 'session';
+	row.className = 'row session';
 	// mouse event handlers are in drag_and_drop.js
 	row.addEventListener('mousedown', handleMouseDown);
 	row.addEventListener('mouseenter', handleMouseEnter);
@@ -138,28 +149,28 @@ function buildEntryDom(bookmark) {
 	let restoreHereButton = document.createElement('input');
 	restoreHereButton.type = 'button';
 	restoreHereButton.className = 'restore_here_button';
-	restoreHereButton.title = 'Close active and open saved window';
+	restoreHereButton.title = browser.i18n.getMessage('restoreHereButtonTitle');
 	restoreHereButton.value = '';
 	restoreHereButton.addEventListener('click', handleRestoreHere);
 
 	let overrideButton = document.createElement('input');
 	overrideButton.type = 'button';
 	overrideButton.className = 'override_button';
-	overrideButton.title = 'Override saved with active window';
+	overrideButton.title = browser.i18n.getMessage('overrideButtonTitle');
 	overrideButton.value = '';
 	overrideButton.addEventListener('click', handleOverride);
 
 	let deleteButton = document.createElement('input');
 	deleteButton.type = 'button';
 	deleteButton.className = 'delete_button';
-	deleteButton.title = 'Delete saved window';
-	deleteButton.value = '✖';
+	deleteButton.title = browser.i18n.getMessage('deleteButtonTitle');
+	deleteButton.value = '';
 	deleteButton.addEventListener('click', handleDelete);
 
 	let restoreButton = document.createElement('input');
 	restoreButton.type = 'button';
 	restoreButton.className = 'restore_button';
-	restoreButton.title = 'Open saved window';
+	restoreButton.title = browser.i18n.getMessage('restoreButtonTitle');
 	restoreButton.value = bookmark.title;
 	restoreButton.addEventListener('click', handleRestore);
 
@@ -184,7 +195,7 @@ async function handleRestoreHere(e) {
 			let confirmed = toggleConfirmation(
 				this
 				, e.target.previousSibling
-				, 'close active window?');
+				, 'restoreHerePrompt');
 			if (confirmed) {
 				restoreHere();
 			}
@@ -216,7 +227,7 @@ async function handleOverride(e) {
 			let confirmed = toggleConfirmation(
 				this
 				, e.target.nextSibling
-				, 'override?');
+				, 'overridePrompt');
 			if (confirmed) {
 				override();
 			}
@@ -247,7 +258,7 @@ async function handleDelete(e) {
 	let id = e.target.parentNode.id;
 
 	if (confirm) {
-		let confirmed = toggleConfirmation(this, e.target.nextSibling.nextSibling, 'delete?');
+		let confirmed = toggleConfirmation(this, e.target.nextSibling.nextSibling, 'deletePrompt');
 		if (confirmed) {
 			deleteBookmarks(id);
 		}
@@ -256,6 +267,7 @@ async function handleDelete(e) {
 	}
 }
 async function handleRestore(e) {
+	let showPlaceholder = (await settings).showPlaceholder;
 	let id = e.target.parentNode.id;
 	let tabs = await browser.bookmarks.getChildren(id);
 
@@ -269,16 +281,18 @@ async function handleRestore(e) {
 		|| tab.url.indexOf('data:') === 0 	
 		|| tab.url.indexOf('file:') === 0 
 		|| (tab.url.indexOf('about:') === 0 && tab.url.indexOf('about:blank') !== 0)) {
-			addresses.push(browser.extension.getURL(
-				'placeholder/placeholder.html?r=' + tab.url + '&t=' + tab.title));
+			if (showPlaceholder) {
+				addresses.push(browser.extension.getURL(
+					'placeholder/placeholder.html?r=' + tab.url + '&t=' + tab.title));
+			}
 		} else {
 			addresses.push(tab.url);
 		}
 	}
 	browser.windows.create({ url: addresses});
 
-	let settings = await browser.storage.local.get('deleteAfter');
-	if (settings.deleteAfter) {
+	let deleteAfter = (await settings).deleteAfter;
+	if (deleteAfter) {
 		deleteBookmarks(id);
 	}
 }
