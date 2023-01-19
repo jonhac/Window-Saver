@@ -13,7 +13,7 @@ async function init() {
   });
   document.getElementById("bug").addEventListener("click", function () {
     browser.tabs.create({
-      url: "https://github.com/bit-tinker/Window-Saver/issues",
+      url: "https://github.com/jonhac/Window-Saver/issues",
     });
     window.close();
   });

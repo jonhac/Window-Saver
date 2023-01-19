@@ -6,7 +6,7 @@
 
   "name": "Window Saver",
   "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/bit-tinker/Window-Saver",
+  "homepage_url": "https://github.com/jonhac/Window-Saver",
 
   "applications": {
     "gecko": {
