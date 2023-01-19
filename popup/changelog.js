@@ -5,7 +5,7 @@ async function init() {
   document.body.style.width = params.get("w") + "px";
 
   document.getElementById("back").addEventListener("click", function () {
-    window.location.href = browser.extension.getURL("popup/popup.html");
+    window.location.href = browser.runtime.getURL("popup/popup.html");
   });
   document.getElementById("more").addEventListener("click", function () {
     browser.tabs.create({ url: browser.i18n.getMessage("storeUrl") });

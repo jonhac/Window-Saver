@@ -8,10 +8,10 @@
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/jonhac/Window-Saver",
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
-      "strict_min_version": "55.0"
+      "strict_min_version": "57.0"
     }
   },
 

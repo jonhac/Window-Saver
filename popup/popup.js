@@ -27,7 +27,7 @@ function init() {
     window.close();
   });
   document.getElementById("version").addEventListener("click", function () {
-    window.location.href = browser.extension.getURL(
+    window.location.href = browser.runtime.getURL(
       "popup/changelog.html?w=" + document.body.clientWidth
     );
   });
