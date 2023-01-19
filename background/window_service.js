@@ -26,7 +26,7 @@ async function onMessage(message) {
     ) {
       if (showPlaceholder) {
         addresses.push(
-          browser.extension.getURL(
+          browser.runtime.getURL(
             "placeholder/placeholder.html?r=" + tab.url + "&t=" + tab.title
           )
         );
