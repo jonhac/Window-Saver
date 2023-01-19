@@ -1,70 +1,68 @@
 {
-	"manifest_version": 2,
+  "manifest_version": 2,
 
-	"version": "1.6",
-	"default_locale": "en",
-	
-	"name": "Window Saver",
-	"description": "__MSG_extensionDescription__",
-	"homepage_url": "https://github.com/bit-tinker/Window-Saver",
+  "version": "1.7",
+  "default_locale": "en",
 
-	"applications":
-	{
-	    "gecko":
-		{
-			"id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
-			"strict_min_version": "55.0"
-	    }
-	},
+  "name": "Window Saver",
+  "description": "__MSG_extensionDescription__",
+  "homepage_url": "https://github.com/jonhac/Window-Saver",
 
-	"icons": {
-		"96": "icons/dark.svg"
-	},
+  "applications": {
+    "gecko": {
+      "id": "{18f88f40-01fb-4324-86cb-f99cd32f2de4}",
+      "strict_min_version": "55.0"
+    }
+  },
 
-	"permissions": [
-		"bookmarks",
-		"tabs",
-		"storage"
-	],
-	
-	"incognito": "spanning",
+  "icons": {
+    "96": "icons/dark.svg"
+  },
 
-	"background": {
-		"scripts": ["background.js"]
-	},
-	
-	"options_ui": {
-		"page": "options/options.html"
-	},
+  "permissions": ["bookmarks", "tabs", "storage"],
 
-	"browser_action": {
-		"default_title": "Window Saver",
-		"default_popup": "popup/popup.html",
-		"default_icon": {
-			"16": "icons/dark.svg",
-			"32": "icons/dark.svg",
-			"64": "icons/dark.svg",
-			"128": "icons/dark.svg"
-		},
-		"theme_icons": [
-			{
-				"size": 16,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}, {
-				"size": 32,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}, {
-				"size": 64,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}, {
-				"size": 128,
-				"light": "icons/light.svg",
-				"dark": "icons/dark.svg"
-			}
-		]
-	}
+  "incognito": "spanning",
 
+  "background": {
+    "page": "./background/background_page.html",
+    "persistent": false
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+
+  "browser_action": {
+    "default_title": "Window Saver",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/dark.svg",
+      "32": "icons/dark.svg",
+      "64": "icons/dark.svg",
+      "128": "icons/dark.svg"
+    },
+    "theme_icons": [
+      {
+        "size": 16,
+        "light": "icons/light.svg",
+        "dark": "icons/dark.svg"
+      },
+      {
+        "size": 32,
+        "light": "icons/light.svg",
+        "dark": "icons/dark.svg"
+      },
+      {
+        "size": 64,
+        "light": "icons/light.svg",
+        "dark": "icons/dark.svg"
+      },
+      {
+        "size": 128,
+        "light": "icons/light.svg",
+        "dark": "icons/dark.svg"
+      }
+    ]
+  }
 }

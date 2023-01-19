@@ -1,95 +1,107 @@
-document.addEventListener('mouseup', handleMouseUp);
-document.addEventListener('mouseleave', handleMouseLeavePopup);
+document.addEventListener("mouseup", handleMouseUp);
+document.addEventListener("mouseleave", handleMouseLeavePopup);
+
+export function enableDragAndDrop(node) {
+  node.addEventListener("mousedown", handleMouseDown);
+  node.addEventListener("mouseenter", handleMouseEnter);
+  node.addEventListener("mouseleave", handleMouseLeave);
+}
 
 let dragging = null;
 let dragStartY;
 
 function stopDragging() {
-	dragging.classList.remove('moving');
-	dragging = null;
+  dragging.classList.remove("moving");
+  dragging = null;
 }
 
 function handleMouseDown(e) {
-	dragging = getValidDragNode(e.target);
-	dragging.classList.add('moving');
-	dragStartY = e.pageY;
+  dragging = getValidDragNode(e.target);
+  dragging.classList.add("moving");
+  dragStartY = e.pageY;
 }
 function handleMouseEnter(e) {
-	if (!dragging || dragging === e.target) {
-		return;
-	}
-	if (e.pageY < dragStartY) {
-		e.target.classList.add('drop_over');
-	} else {
-		e.target.classList.add('drop_under');
-	}
+  if (!dragging || dragging === e.target) {
+    return;
+  }
+  if (e.pageY < dragStartY) {
+    e.target.classList.add("drop_over");
+  } else {
+    e.target.classList.add("drop_under");
+  }
 }
 function handleMouseLeave(e) {
-	if (e.target.classList.contains('drop_over')) {
-		e.target.classList.remove('drop_over');
-	}  else if (e.target.classList.contains('drop_under')) {
-		e.target.classList.remove('drop_under');
-	}
+  if (e.target.classList.contains("drop_over")) {
+    e.target.classList.remove("drop_over");
+  } else if (e.target.classList.contains("drop_under")) {
+    e.target.classList.remove("drop_under");
+  }
 }
 function handleMouseLeavePopup(e) {
-	if (dragging) {
-		stopDragging();
-	}
+  if (dragging) {
+    stopDragging();
+  }
 }
 async function handleMouseUp(e) {
-	if (!dragging) {
-		return;
-	}
+  if (!dragging) {
+    return;
+  }
 
-	let target = getValidDragNode(e.target);
+  let target = getValidDragNode(e.target);
 
-	if (!target) {
-		stopDragging();
-	} else {
-		let targetedIndex = 0;
-		
-		let runner = target.parentNode.firstChild;
-		while (runner !== target) {
-			runner = runner.nextSibling;
-			targetedIndex++;
-		}
+  if (!target) {
+    stopDragging();
+  } else {
+    let targetedIndex = 0;
 
-		if (target.classList.contains('drop_over')) {
-			target.classList.remove('drop_over');
-		}  else if (target.classList.contains('drop_under')) {
-			target.classList.remove('drop_under');
-			target = target.nextSibling;
-		} 
+    let runner = target.parentNode.firstChild;
+    while (runner !== target) {
+      runner = runner.nextSibling;
+      targetedIndex++;
+    }
 
-		if (target !== dragging) {
-			// move the HTML
-			let parent = dragging.parentNode;
-			parent.removeChild(dragging);
-			parent.insertBefore(dragging, target);
+    if (target.classList.contains("drop_over")) {
+      target.classList.remove("drop_over");
+    } else if (target.classList.contains("drop_under")) {
+      target.classList.remove("drop_under");
+      target = target.nextSibling;
+    }
 
-			// move the bookmarks
-			let settings = await browser.storage.local.get('folderId');
-			let folderId = settings.folderId;
+    if (target !== dragging) {
+      // move the HTML
+      let parent = dragging.parentNode;
+      parent.removeChild(dragging);
+      parent.insertBefore(dragging, target);
 
-			browser.bookmarks.move(
-				dragging.id, {parentId: folderId, index: targetedIndex}
-			)
+      // move the bookmarks
+      let settings = await browser.storage.local.get("folderId");
+      let folderId = settings.folderId;
 
-			stopDragging();
-		} else {
-			stopDragging();
-		}
-	}
+      browser.bookmarks.move(dragging.id, {
+        parentId: folderId,
+        index: targetedIndex,
+      });
+
+      stopDragging();
+    } else {
+      stopDragging();
+    }
+  }
 }
 
 function getValidDragNode(node) {
-	if (node.parentNode && 'undefined' !== typeof node.parentNode.classList
-	&& node.parentNode.classList.contains('session')) {
-		return node.parentNode;
-	}
-	if ('undefined' !== typeof node.classList
-	&& node.classList.contains('session')) {
-		return node;
-	}
-	return null;
+  if (
+    node.parentNode &&
+    "undefined" !== typeof node.parentNode.classList &&
+    node.parentNode.classList.contains("session")
+  ) {
+    return node.parentNode;
+  }
+  if (
+    "undefined" !== typeof node.classList &&
+    node.classList.contains("session")
+  ) {
+    return node;
+  }
+  return null;
 }

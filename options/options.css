@@ -1,24 +1,26 @@
 @font-face {
-	font-family: 'icons';
-	src: url('../icons/icons.woff??3lk1bk') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: "icons";
+  src: url("../icons/icons.woff??3lk1bk") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-* {
-	font-family: sans-serif, icons; 
-	font-size: 100%;
+:root {
+  color-scheme: light dark;
+  font-family: sans-serif, icons;
+  background-color: Canvas;
+  color: CanvasText;
 }
 
 div {
-	margin-top: 1em;
-	display: block;
+  margin-top: 1em;
+  display: block;
 }
 input {
-	vertical-align: middle; 
+  vertical-align: middle;
 }
 #confirmations {
-	border-left: 1px solid #000;
-	margin-left: 2em;
-	padding-left: 0.5em;
+  border-left: 1px solid GrayText;
+  margin-left: 2em;
+  padding-left: 0.5em;
 }

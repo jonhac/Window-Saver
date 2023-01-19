@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
 
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="popup.css" />
-</head>
-
-<body>
-	<div class="row">
-		<input id="name_input" type=text placeholder="__MSG_namePlaceholder__" />
-		<input id="save" type="button" value="__MSG_saveButton__" title="__MSG_saveButtonTitle__"/>
-	</div>
-	<div id="bookmarks"></div>
-	<div class="row">
-		<input type="button" id="settings" title="__MSG_settingsButtonTitle__" value="" />
-		<span class="spacer">Window Saver</span>
-		<input type="button" id="version" title="__MSG_versionButtonTitle__"/>
-	</div>
-	<script src="../insert_translations.js"></script>
-	<script src="drag_and_drop.js"></script>
-	<script src="main.js"></script>
-</body>
-
+  <body>
+    <div class="row">
+      <input
+        id="name_input"
+        type="text"
+        placeholder="__MSG_namePlaceholder__"
+      />
+      <input
+        id="save"
+        type="button"
+        value="__MSG_saveButton__"
+        title="__MSG_saveButtonTitle__"
+      />
+    </div>
+    <div id="bookmarks"></div>
+    <div class="row">
+      <input
+        type="button"
+        id="settings"
+        title="__MSG_settingsButtonTitle__"
+        value=""
+      />
+      <span class="spacer">Window Saver</span>
+      <input type="button" id="version" title="__MSG_versionButtonTitle__" />
+    </div>
+    <script src="../insert_translations.js"></script>
+    <script type="module" src="drag_and_drop.js"></script>
+    <script type="module" src="popup.js"></script>
+  </body>
 </html>

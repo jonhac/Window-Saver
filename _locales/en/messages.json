@@ -1,161 +1,161 @@
 {
-    // manifest
+  // manifest
 
-    "extensionDescription": {
-      "message": "Saves and restores complete windows in bookmarks.",
-      "description": "Description of the extension."
-    },
+  "extensionDescription": {
+    "message": "Saves and restores complete windows in bookmarks.",
+    "description": "Description of the extension."
+  },
 
-    // main popup
+  // main popup
 
-    "namePlaceholder": {
-        "message": "Window Name"
-    },
+  "namePlaceholder": {
+    "message": "Window Name"
+  },
 
-    "saveButton": {
-        "message": "save"
-    },
-    "saveButtonTitle": {
-        "message": "Save Active Window"
-    },
-    "settingsButtonTitle": {
-        "message": "Open Settings"
-    },
-    "versionButtonTitle": {
-        "message": "About"
-    },
+  "saveButton": {
+    "message": "save"
+  },
+  "saveButtonTitle": {
+    "message": "Save Active Window"
+  },
+  "settingsButtonTitle": {
+    "message": "Open Settings"
+  },
+  "versionButtonTitle": {
+    "message": "About"
+  },
 
-    "restoreButtonTitle": {
-        "message": "Open saved window"
-    },
-    "restoreHereButtonTitle": {
-        "message": "Close active and open saved window"
-    },
-    "deleteButtonTitle": {
-        "message": "Delete saved window"
-    },
-    "overrideButtonTitle": {
-        "message": "Override saved with active window"
-    },
+  "restoreButtonTitle": {
+    "message": "Open saved window"
+  },
+  "restoreHereButtonTitle": {
+    "message": "Close active and open saved window"
+  },
+  "deleteButtonTitle": {
+    "message": "Delete saved window"
+  },
+  "overrideButtonTitle": {
+    "message": "Override saved with active window"
+  },
 
-    "savePrivatePrompt": {
-        "message": "save private window?"
-    },
-    "restoreHerePrompt": {
-        "message": "close active window?"
-    },
-    "overridePrompt": {
-        "message": "override?"
-    },
-    "deletePrompt": {
-        "message": "delete?"
-    },
+  "savePrivatePrompt": {
+    "message": "save private window?"
+  },
+  "restoreHerePrompt": {
+    "message": "close active window?"
+  },
+  "overridePrompt": {
+    "message": "override?"
+  },
+  "deletePrompt": {
+    "message": "delete?"
+  },
 
-    "welcomeMessage": {
-        "message": "Welcome to Window Saver!\n Hit the save button to get started."
-    },
+  "welcomeMessage": {
+    "message": "Welcome to Window Saver!\n Hit the save button to get started."
+  },
 
-    // version|about popup
+  // version|about popup
 
-    "goBack": {
-        "message": "Go Back",
-        "description": "Tooltip for button"
-    },
-    "reportButton": {
-        "message": "Report a Bug"
-    },
-    "oldVersions": {
-        "message": "Old Versions",
-        "description": "Button text"
-    },
-    "storeUrl": {
-        "message": "https://addons.mozilla.org/en-US/firefox/addon/window-saver/versions/"
-    },
-    "newIn": {
-        "message": "New in"
-    },
-    "changelog": {
-        "message": "New setting to ignore \"restricted\" Tabs instead of opening the placeholder\nGerman translation\nStyle improvements"
-    },
+  "goBack": {
+    "message": "Go Back",
+    "description": "Tooltip for button"
+  },
+  "reportButton": {
+    "message": "Report a Bug"
+  },
+  "oldVersions": {
+    "message": "Old Versions",
+    "description": "Button text"
+  },
+  "storeUrl": {
+    "message": "https://addons.mozilla.org/en-US/firefox/addon/window-saver/versions/"
+  },
+  "newIn": {
+    "message": "New in"
+  },
+  "changelog": {
+    "message": "Support Dark Mode\nPerformance improvements"
+  },
 
-    // options page
+  // options page
 
-    "folder" : {
-        "message": "Master Folder"
-    },
-    "changeButton": {
-        "message": "change"
-    },
-    "changeButtonTitle": {
-        "message": "Switch to a different folder"
-    },
-    "renameButton": {
-        "message": "rename"
-    },
-    "renameButtonTitle": {
-        "message": "Keep the current Folder, but change it's name"
-    },
+  "folder": {
+    "message": "Master Folder"
+  },
+  "changeButton": {
+    "message": "change"
+  },
+  "changeButtonTitle": {
+    "message": "Switch to a different folder"
+  },
+  "renameButton": {
+    "message": "rename"
+  },
+  "renameButtonTitle": {
+    "message": "Keep the current Folder, but change it's name"
+  },
 
-    "confirmHeading" : {
-        "message": "Ask for confirmation before"
-    },
-    "confirmSavePrivate": {
-        "message": "Saving private browsing windows"
-    },
-    "confirmDelete": {
-        "message": "Deleting bookmarks"
-    },
-    "confirmOverride": {
-        "message": "Overriding bookmarks"
-    },
-    "confirmCloseNonPrivate": {
-        "message": "Closing non-private browsing windows"
-    },
-    "confirmClosePrivate": {
-        "message": "Closing private browsing windows"
-    },
-    "showPlaceholder": {
-        "message": "Show placeholer when restoring restricted pages (instead of ignoring them)"
-    },
-    "deleteAfter": {
-        "message": "Always delete bookmarks after restoring windows"
-    },
+  "confirmHeading": {
+    "message": "Ask for confirmation before"
+  },
+  "confirmSavePrivate": {
+    "message": "Saving private browsing windows"
+  },
+  "confirmDelete": {
+    "message": "Deleting bookmarks"
+  },
+  "confirmOverride": {
+    "message": "Overriding bookmarks"
+  },
+  "confirmCloseNonPrivate": {
+    "message": "Closing non-private browsing windows"
+  },
+  "confirmClosePrivate": {
+    "message": "Closing private browsing windows"
+  },
+  "showPlaceholder": {
+    "message": "Show placeholer when restoring restricted pages (instead of ignoring them)"
+  },
+  "deleteAfter": {
+    "message": "Always delete bookmarks after restoring windows"
+  },
 
-    "dublicateError": {
-        "message": "Switching folders was aborted.\nMore than one folder with the chosen name is available."
-    },
+  "dublicateError": {
+    "message": "Switching folders was aborted.\nMore than one folder with the chosen name is available."
+  },
 
-    // placeholder
+  // placeholder
 
-    "placeholderFor": {
-        "message": "This is a placeholer for the page" 
-    },
-    "placeholderExplanationCaption": {
-        "message": "What? Why? How?" 
-    },
-    "placeholderExplanation1": {
-        "message": "You used the Window Saver extension to open a window \ncontaining a tab with a restricted page.\nFirefox prevents extensions from manipulating restricted pages for security reasons." 
-    },
-    "placeholderExplanation2": {
-        "message": "Window Saver is therefore able to save such pages, but not to restore them. This placeholder is the best it can do.\nTo access the saved page simply copy the URL above and paste it into the address bar." 
-    },
-    "placeholderTip": {
-        "message": "You can use Firefox's inbuilt bookmark menus to restore saved windows as well. \nDoing so requires a few more steps, but if there are many restricted tabs in a saved window\nit might be a preferable option for this window.\nThe quickest way to do so is the following:" 
-    },
-    "placeholderTip1": {
-        "message": "Open a new Firefox window (CTRL+N)" 
-    },
-    "placeholderTip2": {
-        "message": "Open the Bookmarks Sidebar (CTRL+B)" 
-    },
-    "placeholderTip3": {
-        "message": "Expand the Master Folder (default: 'Window Saver' in 'Other Bookmarks') with a left-click" 
-    },
-    "placeholderTip4": {
-        "message": "Right-click on the saved window and choose 'Open All in Tabs' to restore it" 
-    },
+  "placeholderFor": {
+    "message": "This is a placeholer for the page"
+  },
+  "placeholderExplanationCaption": {
+    "message": "What? Why? How?"
+  },
+  "placeholderExplanation1": {
+    "message": "You used the Window Saver extension to open a window \ncontaining a tab with a restricted page.\nFirefox prevents extensions from manipulating restricted pages for security reasons."
+  },
+  "placeholderExplanation2": {
+    "message": "Window Saver is therefore able to save such pages, but not to restore them. This placeholder is the best it can do.\nTo access the saved page simply copy the URL above and paste it into the address bar."
+  },
+  "placeholderTip": {
+    "message": "You can use Firefox's inbuilt bookmark menus to restore saved windows as well. \nDoing so requires a few more steps, but if there are many restricted tabs in a saved window\nit might be a preferable option for this window.\nThe quickest way to do so is the following:"
+  },
+  "placeholderTip1": {
+    "message": "Open a new Firefox window (CTRL+N)"
+  },
+  "placeholderTip2": {
+    "message": "Open the Bookmarks Sidebar (CTRL+B)"
+  },
+  "placeholderTip3": {
+    "message": "Expand the Master Folder (default: 'Window Saver' in 'Other Bookmarks') with a left-click"
+  },
+  "placeholderTip4": {
+    "message": "Right-click on the saved window and choose 'Open All in Tabs' to restore it"
+  },
 
-    "placeholderTitlePrefix": {
-        "message": "Not really" 
-    }
+  "placeholderTitlePrefix": {
+    "message": "Not really"
   }
+}
