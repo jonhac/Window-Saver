@@ -72,7 +72,7 @@
     "message": "Neu in"
   },
   "changelog": {
-    "message": "Neue Einstellung um \"kritische\" Tabs zu beim öffnen zu ignorieren anstatt den Platzhalter anzuzeigen\nDeutsche Übersetzung\nDesign Änderungen"
+    "message": "Unterstüzt dunkles Design\nVerbesserte Geschwindigkeit"
   },
 
   // options page

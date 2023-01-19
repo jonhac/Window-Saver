@@ -75,7 +75,7 @@
     "message": "New in"
   },
   "changelog": {
-    "message": "New setting to ignore \"restricted\" Tabs instead of opening the placeholder\nGerman translation\nStyle improvements"
+    "message": "Support Dark Mode\nPerformance improvements"
   },
 
   // options page
