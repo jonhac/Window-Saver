@@ -22,7 +22,7 @@ async function init() {
   let version = info.version;
 
   document.getElementById("change_header").innerText =
-    browser.i18n.getMessage("newIn") + version + ":";
+    browser.i18n.getMessage("newIn") + " " + version + ":";
   let log = browser.i18n.getMessage("changelog").split("\n");
   for (let change of log) {
     let element = document.createElement("div");
