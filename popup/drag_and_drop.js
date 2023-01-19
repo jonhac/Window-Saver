@@ -1,6 +1,12 @@
 document.addEventListener("mouseup", handleMouseUp);
 document.addEventListener("mouseleave", handleMouseLeavePopup);
 
+export function enableDragAndDrop(node) {
+  node.addEventListener("mousedown", handleMouseDown);
+  node.addEventListener("mouseenter", handleMouseEnter);
+  node.addEventListener("mouseleave", handleMouseLeave);
+}
+
 let dragging = null;
 let dragStartY;
 

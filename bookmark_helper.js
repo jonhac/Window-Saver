@@ -33,3 +33,15 @@ export async function findOrCreateBookmarkFolder(name) {
     return folder.id;
   }
 }
+export function saveCurrentWindow(bookmarkFolderId) {
+  browser.tabs.query({ currentWindow: true }).then((tabList) => {
+    for (let i = tabList.length - 1; i >= 0; i--) {
+      browser.bookmarks.create({
+        parentId: bookmarkFolderId,
+        index: i,
+        title: tabList[i].title,
+        url: tabList[i].url,
+      });
+    }
+  });
+}

@@ -1,3 +1,5 @@
+import { saveCurrentWindow } from "../bookmark_helper.js";
+import { enableDragAndDrop } from "./drag_and_drop.js";
 let settings = browser.storage.local.get([
   "folderId",
   "confirmSavePrivate",
@@ -6,7 +8,6 @@ let settings = browser.storage.local.get([
   "confirmCloseNonPrivate",
   "confirmClosePrivate",
   "deleteAfter",
-  "showPlaceholder",
 ]);
 
 document.addEventListener("DOMContentLoaded", init);
@@ -123,7 +124,7 @@ async function handleSave() {
       index: 0,
       title: name,
     });
-    saveSession(windowFolder.id);
+    saveCurrentWindow(windowFolder.id);
 
     let dom = buildEntryDom(windowFolder);
     let bookmarks = document.getElementById("bookmarks");
@@ -165,10 +166,7 @@ function buildEntryDom(bookmark) {
   let row = document.createElement("div");
   row.id = bookmark.id;
   row.className = "row session";
-  // mouse event handlers are in drag_and_drop.js
-  row.addEventListener("mousedown", handleMouseDown);
-  row.addEventListener("mouseenter", handleMouseEnter);
-  row.addEventListener("mouseleave", handleMouseLeave);
+  enableDragAndDrop(row);
 
   let restoreHereButton = document.createElement("input");
   restoreHereButton.type = "button";
@@ -234,19 +232,6 @@ async function handleRestoreHere(e) {
   }
 }
 
-function saveSession(folderId) {
-  browser.tabs.query({ currentWindow: true }).then(function (tabList) {
-    for (let i = tabList.length - 1; i >= 0; i--) {
-      browser.bookmarks.create({
-        parentId: folderId,
-        index: i,
-        title: tabList[i].title,
-        url: tabList[i].url,
-      });
-    }
-  });
-}
-
 async function handleOverride(e) {
   let confirm = (await settings).confirmOverride;
   if (confirm) {
@@ -270,7 +255,7 @@ async function handleOverride(e) {
       browser.bookmarks.remove(oldEntry.id);
     }
 
-    saveSession(id);
+    saveCurrentWindow(id);
   }
 }
 
@@ -298,36 +283,11 @@ async function handleDelete(e) {
   }
 }
 async function handleRestore(e) {
-  let showPlaceholder = (await settings).showPlaceholder;
   let id = e.target.parentNode.id;
-  let tabs = await browser.bookmarks.getChildren(id);
-
-  let addresses = new Array();
-  for (let tab of tabs) {
-    // Filter out priviledged URLs as they cannot be opened by an extension.
-    // see: https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/create
-    if (
-      "undefined" == typeof tab.url ||
-      tab.url.indexOf("chrome:") === 0 ||
-      tab.url.indexOf("javascript:") === 0 ||
-      tab.url.indexOf("data:") === 0 ||
-      tab.url.indexOf("file:") === 0 ||
-      (tab.url.indexOf("about:") === 0 && tab.url.indexOf("about:blank") !== 0)
-    ) {
-      if (showPlaceholder) {
-        addresses.push(
-          browser.extension.getURL(
-            "placeholder/placeholder.html?r=" + tab.url + "&t=" + tab.title
-          )
-        );
-      }
-    } else {
-      addresses.push(tab.url);
-    }
-  }
-  browser.windows.create({ url: addresses });
-
   let deleteAfter = (await settings).deleteAfter;
+
+  browser.runtime.sendMessage({ bookmarkFolderId: id });
+
   if (deleteAfter) {
     deleteBookmarks(id);
   }
