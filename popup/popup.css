@@ -12,14 +12,15 @@
   border: 0;
 }
 
-body {
+:root {
+  color-scheme: light dark;
   margin: 0;
   padding: 0;
   min-width: 15em;
 
   font-family: sans-serif, icons;
-  color: -moz-FieldText;
-  background-color: -moz-Field;
+  color: CanvasText;
+  background-color: Canvas;
   border-style: none;
 }
 
@@ -35,7 +36,7 @@ body {
   text-indent: -2em;
   padding-left: 2.5em;
   width: calc(100% - 4.5em -5px);
-  border-left: thin solid -moz-FieldText;
+  border-left: thin solid FieldText;
   text-align: start;
 }
 .session {
@@ -43,12 +44,11 @@ body {
   margin-bottom: 1px;
 }
 .session:hover {
-  box-shadow: 0px 0px 5px -moz-FieldText;
+  box-shadow: 0px 0px 5px FieldText;
 }
 input {
-  font-size: inherit;
   font-family: inherit;
-  color: inherit;
+  font-size: 1rem;
   background-color: inherit;
 
   text-align: start;
@@ -57,12 +57,12 @@ input {
   margin: 1px;
   vertical-align: middle;
   border-style: none;
-  box-shadow: 0px 0px 1px -moz-FieldText;
+  box-shadow: 0px 0px 1px FieldText;
 }
 input[type="button"]:hover {
-  color: -moz-MenuHoverText;
-  background-color: -moz-MenuHover;
-  box-shadow: 0px 0px 5px -moz-FieldText;
+  color: AccentColorText;
+  background-color: AccentColor;
+  box-shadow: 0px 0px 5px FieldText;
 }
 #name_input {
   flex: 1;
@@ -92,18 +92,18 @@ input[type="button"]:hover {
   cursor: grabbing;
 }
 .drop_over:hover {
-  box-shadow: 0 -5px 5px -5px -moz-FieldText;
+  box-shadow: 0 -5px 5px -5px FieldText;
   cursor: grabbing;
 }
 .drop_under:hover {
-  box-shadow: 0 5px 5px -5px -moz-FieldText;
+  box-shadow: 0 5px 5px -5px FieldText;
   cursor: grabbing;
 }
 .drop_over > input[type="button"]:hover,
 .drop_under > input[type="button"]:hover {
   color: inherit;
   background-color: inherit;
-  box-shadow: 0px 0px 1px -moz-FieldText;
+  box-shadow: 0px 0px 1px FieldText;
 }
 
 #warning {

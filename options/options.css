@@ -5,9 +5,11 @@
   font-style: normal;
 }
 
-* {
+:root {
+  color-scheme: light dark;
   font-family: sans-serif, icons;
-  font-size: 100%;
+  background-color: Canvas;
+  color: CanvasText;
 }
 
 div {
@@ -18,7 +20,7 @@ input {
   vertical-align: middle;
 }
 #confirmations {
-  border-left: 1px solid #000;
+  border-left: 1px solid GrayText;
   margin-left: 2em;
   padding-left: 0.5em;
 }
