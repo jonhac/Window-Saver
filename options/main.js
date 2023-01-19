@@ -1,3 +1,5 @@
+import { findOrCreateBookmarkFolder } from "../bookmark_helper.js";
+
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
@@ -75,8 +77,7 @@ async function changeFolder() {
     return;
   }
 
-  let bp = browser.extension.getBackgroundPage();
-  bp.findOrCreateFolder(name)
+  findOrCreateBookmarkFolder(name)
     .then(function (newId) {
       browser.storage.local.set({ folderId: newId });
     })

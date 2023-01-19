@@ -24,7 +24,8 @@
   "incognito": "spanning",
 
   "background": {
-    "scripts": ["background.js"]
+    "page": "./background/background_page.html",
+    "persistent": false
   },
 
   "options_ui": {
