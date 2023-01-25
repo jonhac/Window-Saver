@@ -7,7 +7,7 @@
 
 :root {
   color-scheme: light dark;
-  font-family: sans-serif, icons;
+  font-family: system-ui, sans-serif, icons;
   background-color: Canvas;
   color: CanvasText;
 }

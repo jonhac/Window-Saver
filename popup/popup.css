@@ -18,7 +18,7 @@
   padding: 0;
   min-width: 15em;
 
-  font-family: sans-serif, icons;
+  font-family: system-ui, sans-serif, icons;
   color: CanvasText;
   background-color: Canvas;
   border-style: none;
