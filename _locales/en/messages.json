@@ -134,13 +134,13 @@
     "message": "What? Why? How?"
   },
   "placeholderExplanation1": {
-    "message": "You used the Window Saver extension to open a window \ncontaining a tab with a restricted page.\nFirefox prevents extensions from manipulating restricted pages for security reasons."
+    "message": "Window Saver restored a window containing a \"restricted\" tab. Firefox has a security feature to stop just that, as extension interacting with \"restricted\" websites (e.g. the extention website or the browser settings page) could mess it up."
   },
   "placeholderExplanation2": {
-    "message": "Window Saver is therefore able to save such pages, but not to restore them. This placeholder is the best it can do.\nTo access the saved page simply copy the URL above and paste it into the address bar."
+    "message": "That's why Window Saver cannot reopen tabs of restricted websites. This placeholder is the best it can do. Access the saved tab by copy and pasting the URL above into the address bar."
   },
   "placeholderTip": {
-    "message": "You can use Firefox's inbuilt bookmark menus to restore saved windows as well. \nDoing so requires a few more steps, but if there are many restricted tabs in a saved window\nit might be a preferable option for this window.\nThe quickest way to do so is the following:"
+    "message": "You can use Firefox's inbuilt bookmark menus to restore saved windows as well. Doing so requires a few more steps. It might be a preferable option for windows containing several restricted tabs. The quickest way to do so is the following:"
   },
   "placeholderTip1": {
     "message": "Open a new Firefox window (CTRL+N)"
