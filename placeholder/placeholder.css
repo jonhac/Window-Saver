@@ -1,4 +1,8 @@
 body {
+  color-scheme: light dark;
+  color: CanvasText;
+  background-color: Canvas;
+
   max-width: 80em;
   margin: 0 auto;
 }
