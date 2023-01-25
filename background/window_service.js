@@ -43,6 +43,7 @@ async function onMessage(message) {
       browser.tabs.create({
         windowId: window.id,
         url: addresses[i],
+        index: i,
         discarded: true,
       });
     }
