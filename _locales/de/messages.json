@@ -1,11 +1,8 @@
 {
-  // manifest
-
   "extensionDescription": {
     "message": "Komplette Fenster als Lesezeichen speichern und wiederherstellen"
   },
 
-  // main popup
 
   "namePlaceholder": {
     "message": "Fenster Name"
@@ -54,7 +51,6 @@
     "message": "Wilkommen zu Window Saver!\nMit speichern geht's los."
   },
 
-  // version|about popup
 
   "goBack": {
     "message": "Zurück"
@@ -75,7 +71,6 @@
     "message": "Unterstüzt dunkles Design\nVerbesserte Geschwindigkeit"
   },
 
-  // options page
 
   "folder": {
     "message": "Überordner"
@@ -122,7 +117,6 @@
     "message": "Der Wechsel wurde abgebrochen.\nEs wurden mehrere Ordner mit dem gewünschten Namen gefunden."
   },
 
-  // placeholder
 
   "placeholderFor": {
     "message": "Dies is ein Platzhalter für die Seite"

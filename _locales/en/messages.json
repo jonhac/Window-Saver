@@ -1,12 +1,9 @@
 {
-  // manifest
-
   "extensionDescription": {
     "message": "Saves and restores complete windows in bookmarks.",
     "description": "Description of the extension."
   },
 
-  // main popup
 
   "namePlaceholder": {
     "message": "Window Name"
@@ -55,7 +52,6 @@
     "message": "Welcome to Window Saver!\n Hit the save button to get started."
   },
 
-  // version|about popup
 
   "goBack": {
     "message": "Go Back",
@@ -78,7 +74,6 @@
     "message": "Support Dark Mode\nPerformance improvements"
   },
 
-  // options page
 
   "folder": {
     "message": "Master Folder"
@@ -125,7 +120,6 @@
     "message": "Switching folders was aborted.\nMore than one folder with the chosen name is available."
   },
 
-  // placeholder
 
   "placeholderFor": {
     "message": "This is a placeholer for the page"
