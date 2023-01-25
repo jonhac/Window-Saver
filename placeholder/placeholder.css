@@ -3,8 +3,9 @@ body {
   color: CanvasText;
   background-color: Canvas;
 
-  max-width: 80em;
-  margin: 0 auto;
+  max-width: 70ch;
+  padding: 2ch;
+  margin: auto;
 }
 div {
   margin-top: 1em;
